@@ -1,0 +1,27 @@
+{
+    "company": "ABHI",
+    "category": "Health Insurance",
+    "pdfs": [
+        {
+            "type": "AnnualReport",
+            "product": "Company",
+    
+            "needs_selenium": true
+        },
+        {
+            "type": "Brochure",
+            "product": "Activ One MAX",
+            "url": "https://s3.ap-south-1.amazonaws.com/ditto-partners/Activ_One_MAX_Policy_Wording_5c16bfaba5.pdf"
+        },
+        {
+            "type": "Prospectus",
+            "product": "Activ One MAX",
+            "url": "https://www.adityabirlacapital.com/healthinsurance/assets/pdf/active-one/prospectus.pdf"
+        },
+        {
+            "type": "RateChart",
+            "product": "Activ One MAX",
+            "url": "https://www.adityabirlacapital.com/healthinsurance/assets/pdf/active-one/MAX/other-documents/zone1.pdf"
+        }
+    ]
+}

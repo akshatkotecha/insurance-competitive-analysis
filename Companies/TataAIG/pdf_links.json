@@ -1,0 +1,26 @@
+{
+    "company": "Tata AIG",
+    "category": "Health Insurance",
+    "pdfs": [
+        {
+            "type": "AnnualReport",
+            "product": "Company",
+            "url": "https://www.tataaig.com/s3/fy_2024_25_23f0139dd5.pdf"
+        },
+        {
+            "type": "Brochure",
+            "product": "Medicare Premier",
+            "url": "https://www.tataaig.com/s3/Tata_AIG_Medi_Care_Premier_2f02f3813c.pdf"
+        },
+        {
+            "type": "RateChart",
+            "product": "Medicare Premier",
+            "url": "https://www.tataaig.com/s3/TATA_Medicare_Premier_871b2dee42.pdf"
+        },
+        {
+            "type": "Prospectus",
+            "product": "Medicare Premier",
+            "url": "https://www.tataaig.com/s3/03_medicare_premier_prospectus_b93b6fc6df.pdf"
+        }
+    ]
+}

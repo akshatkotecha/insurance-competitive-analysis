@@ -1,0 +1,26 @@
+{
+    "company": "Niva Bupa",
+    "category": "Health Insurance",
+    "pdfs": [
+        {
+            "type": "AnnualReport",
+            "product": "Company",
+            "url": "https://transactions.nivabupa.com/pages/doc/pub-dis/annual-reports/Annual-Report-FY-2024-25.pdf"
+        },
+        {
+            "type": "Brochure",
+            "product": "ReAssure",
+            "url": "https://transactions.nivabupa.com/pages/doc/policy_wording/ReAssure-2.0-Policy-Wording.pdf"
+        },
+        {
+            "type": "RateChart",
+            "product": "ReAssure 2.0",
+            "url": "https://transactions.nivabupa.com/pages/doc/premium_chart/ReAssure2-0-Combined.pdf?v=1.1"
+        },
+        {
+            "type": "Prospectus",
+            "product": "ReAssure 2.0",
+            "url": "https://cdn.oasr.in/oa-site/cms-uploads/media/Re_Assure_2_0_Prospectus_cum_Sales_Literature_fef9146f88.pdf"
+        }
+    ]
+}

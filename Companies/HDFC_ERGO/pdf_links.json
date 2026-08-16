@@ -1,0 +1,50 @@
+{
+    "company": "HDFC ERGO",
+
+    "category": "Health Insurance",
+
+    "pdfs": [
+
+        {
+
+            "type": "AnnualReport",
+
+            "product": "Company",
+
+            "url": "https://customer-portal-assets.hdfcergo.com/assets/v2/docs/default-source/default-document-library/hdfc-ergo---annual-report-fy-2024-2025-232815887445.pdf"
+            
+
+        },
+
+        {
+
+            "type": "Brochure",
+
+            "product": "my Optima Secure",
+
+            "url": "https://customer-portal-assets.hdfcergo.com/documents/OptimaSecure-BR(18)-761501386357.pdf"
+
+        },
+
+        {
+
+            "type": "Prospectus",
+
+            "product": "my Optima Secure",
+
+            "url": "https://www.hdfcergo.com/docs/default-source/downloads/prospectus/health/my-optima-secure-prospectus.pdf"
+
+        },
+
+        {
+
+            "type": "RateChart",
+
+            "product": "my Optima Secure",
+
+            "url": "https://www.hdfcergo.com/docs/default-source/downloads/brochures/or-rate-chart-excluding-st.pdf"
+
+        }
+
+    ]
+}

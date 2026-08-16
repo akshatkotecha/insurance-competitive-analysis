@@ -1,0 +1,21 @@
+{
+    "company": "ICICI Lombard",
+    "category": "Health Insurance",
+    "pdfs": [
+        {
+            "type": "AnnualReport",
+            "product": "Company",
+            "url": "https://www.icicilombard.com/docs/default-source/financial-information/annual-report-fy2025.pdf"
+        },
+        {
+            "type": "Brochure",
+            "product": "Elevate",
+            "url": "https://www.icicilombard.com/docs/default-source/apps/elevateapp/assets/pdf/elevate-policy-wordings.pdf"
+        },
+        {
+            "type": "RateChart",
+            "product": "Elevate",
+            "url": "https://www.icicilombard.com/docs/default-source/default-document-library/elevate-rate-chart.pdf"
+        }
+    ]
+}

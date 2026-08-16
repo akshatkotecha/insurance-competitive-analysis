@@ -1,0 +1,29 @@
+# Virtual environment
+.venv/
+__pycache__/
+*.pyc
+
+# Scraped / downloaded source documents (~120 MB of insurer PDFs) —
+# regenerate with: python Python/extract_pdf.py
+PDFs/
+Companies/*/downloaded/
+
+# Raw text dumps produced while developing the extraction regexes —
+# not needed to run the pipeline
+Companies/*/*.txt
+
+# Generated FAISS index — regenerate with: python Python/build_index.py
+vectorstore/
+
+# Runtime chatbot query log
+chatbot_log.csv
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Claude Code local settings (machine-specific permissions, not project config)
+.claude/

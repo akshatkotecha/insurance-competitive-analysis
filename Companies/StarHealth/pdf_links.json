@@ -1,0 +1,26 @@
+{
+    "company": "Star Health",
+    "category": "Health Insurance",
+    "pdfs": [
+        {
+            "type": "AnnualReport",
+            "product": "Company",
+            "url": "https://d28c6jni2fmamz.cloudfront.net/AR_FY_25_6de8b2d6d3.pdf"
+        },
+        {
+            "type": "Brochure",
+            "product": "Star Comprehensive",
+            "url": "https://d28c6jni2fmamz.cloudfront.net/Policy_Star_Comprehensive_Insurance_Policy_V_21_3a414ab104.pdf"
+        },
+        {
+            "type": "Prospectus",
+            "product": "Star Comprehensive",
+            "url": "https://d28c6jni2fmamz.cloudfront.net/Prospectus_Star_Comprehensive_Insurance_Policy_V_12_dc6058c95e.pdf"
+        },
+        {
+            "type": "RateChart",
+            "product": "Star Comprehensive",
+            "url": "https://ditto-partners.s3.ap-south-1.amazonaws.com/Star+Health/Star+Comprehensive-Brochure.pdf"
+        }
+    ]
+}

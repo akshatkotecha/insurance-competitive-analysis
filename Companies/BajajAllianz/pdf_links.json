@@ -1,0 +1,26 @@
+{
+    "company": "Bajaj Allianz",
+    "category": "Health Insurance",
+    "pdfs": [
+        {
+            "type": "AnnualReport",
+            "product": "Company",
+            "url": "https://www.bajajgeneralinsurance.com/download-documents/annual-report/Annual-Report-2024-2025.pdf"
+        },
+        {
+            "type": "Brochure",
+            "product": "Health Guard",
+            "url": "https://www.bajajgeneralinsurance.com/download-documents/health-insurance/health-guard/Health-Guard-Brochure-print.pdf"
+        },
+        {
+            "type": "RateChart",
+            "product": "Health Guard",
+            "url": "https://www.bajajgeneralinsurance.com/download-documents/health-insurance/health-guard/New-Health-Guard-Premium-Chart.pdf"
+        },
+        {
+            "type": "Prospectus",
+            "product": "Health Guard",
+            "url": "https://catalog.turtlemintpro.com/health-policy-wording/Bajaj/Brochure/health_guard_gold_brochure.pdf"
+        }
+    ]
+}
