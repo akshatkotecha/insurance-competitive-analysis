@@ -27,3 +27,7 @@ Thumbs.db
 
 # Claude Code local settings (machine-specific permissions, not project config)
 .claude/
+streamlit.pid
+streamlit_out.log
+streamlit_err.log
+
