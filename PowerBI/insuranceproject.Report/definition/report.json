@@ -9,6 +9,15 @@
         "page": "2.3.1"
       },
       "type": "SharedResources"
+    },
+    "customTheme": {
+      "name": "InsuranceCompetitiveIntelligence—Dark.json",
+      "reportVersionAtImport": {
+        "visual": "2.11.0",
+        "report": "3.4.0",
+        "page": "2.3.1"
+      },
+      "type": "RegisteredResources"
     }
   },
   "objects": {
@@ -35,6 +44,17 @@
           "name": "CY26SU07",
           "path": "BaseThemes/CY26SU07.json",
           "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "InsuranceCompetitiveIntelligence—Dark.json",
+          "path": "InsuranceCompetitiveIntelligence—Dark.json",
+          "type": "CustomTheme"
         }
       ]
     }
