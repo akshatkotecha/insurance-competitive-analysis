@@ -165,6 +165,24 @@ table 'business vw_abhi_vs_market'
 	measure 'Price Index Cell Color' = VAR v = AVERAGE('business vw_abhi_vs_market'[price_index]) VAR n = AVERAGE('business vw_abhi_vs_market'[competitor_count]) RETURN SWITCH(TRUE(), ISBLANK(v), "#2c2c2a", n < 5, "#3a3a38", v < 90, "#0ca30c", v <= 105, "#8a8a8a", "#d03b3b")
 		lineageTag: b587dbf3-b2fb-4d79-a2dc-5ffa00c109b7
 
+	measure 'Modal Position (Reliable)' = VAR PositionCounts = ADDCOLUMNS(VALUES('business vw_abhi_vs_market'[position]), "Cnt", CALCULATE(COUNTROWS('business vw_abhi_vs_market'), 'business vw_abhi_vs_market'[competitor_count] >= 5)) VAR TopRow = TOPN(1, PositionCounts, [Cnt], DESC) RETURN MAXX(TopRow, 'business vw_abhi_vs_market'[position])
+		lineageTag: c6ddcad2-a39e-4915-91f8-aca595a8f676
+
+	measure 'Modal Position Count (Reliable)' = VAR ModalPos = [Modal Position (Reliable)] RETURN CALCULATE(COUNTROWS('business vw_abhi_vs_market'), 'business vw_abhi_vs_market'[position] = ModalPos, 'business vw_abhi_vs_market'[competitor_count] >= 5)
+		formatString: 0
+		lineageTag: e04c9860-a3fa-44eb-8f2c-32c357cf77c0
+
+	measure 'ABHI Cheapest Slab Premium' = MINX('business vw_abhi_vs_market', 'business vw_abhi_vs_market'[abhi_premium])
+		formatString: #,##0
+		lineageTag: 292b999c-378c-4f44-90d9-eac8eae81086
+
+	measure 'ABHI Cheapest Slab Market Min' = VAR MinPremium = [ABHI Cheapest Slab Premium] RETURN CALCULATE(MAX('business vw_abhi_vs_market'[market_min]), 'business vw_abhi_vs_market'[abhi_premium] = MinPremium)
+		formatString: #,##0
+		lineageTag: 1f7b3f2a-6d4e-4a9c-8e2b-5c9a7d3e1b4f
+
+	measure 'ABHI Cheapest Slab Label' = VAR MinPremium = [ABHI Cheapest Slab Premium] RETURN CALCULATE(MAX('business vw_abhi_vs_market'[age_band]) & " · " & MAX('business vw_abhi_vs_market'[si_label]), 'business vw_abhi_vs_market'[abhi_premium] = MinPremium)
+		lineageTag: 8e5c1a2d-9f4b-4e6a-b3c7-2d8f1a6e9c5b
+
 	partition 'business vw_abhi_vs_market' = m
 		mode: import
 		source =
