@@ -1,0 +1,4 @@
+relationship 63ec144d-490e-5488-1472-ec2b01577067
+	fromColumn: 'business vw_premium'.company_name
+	toColumn: 'business vw_dim_product'.company_name
+

@@ -1,0 +1,73 @@
+table 'business vw_dim_product'
+	lineageTag: 207e0da7-4627-4cca-be06-b2df2b91fdcd
+
+	column product_id
+		dataType: int64
+		formatString: 0
+		lineageTag: f52d77e4-7645-450d-afb1-545738f41a56
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column company_id
+		dataType: int64
+		formatString: 0
+		lineageTag: fc2c4f84-bb12-4adf-8af0-c41982cea20a
+		summarizeBy: none
+		sourceColumn: company_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column company_name
+		dataType: string
+		lineageTag: e83e5235-7190-4d95-9ebb-767ae9ef8018
+		summarizeBy: none
+		sourceColumn: company_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_name
+		dataType: string
+		lineageTag: c44e19c3-5149-4a88-bcdd-2d5dfec6f40f
+		summarizeBy: none
+		sourceColumn: product_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_label
+		dataType: string
+		lineageTag: e60f14de-c91d-4173-b5dc-c4969c868aaf
+		summarizeBy: none
+		sourceColumn: product_label
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_focal
+		dataType: int64
+		formatString: 0
+		lineageTag: 16c569ec-9795-4c1b-9294-a1b9d2687dd6
+		summarizeBy: none
+		sourceColumn: is_focal
+
+		annotation SummarizationSetBy = Automatic
+
+	column company_role
+		dataType: string
+		lineageTag: 7682207a-6332-4d89-88b1-63b1fa60e3b4
+		summarizeBy: none
+		sourceColumn: company_role
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'business vw_dim_product' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("AKSHAT\SQLEXPRESS", "INSURANCEDB"),
+				    business_vw_dim_product = Source{[Schema="business",Item="vw_dim_product"]}[Data]
+				in
+				    business_vw_dim_product
+
+	annotation PBI_ResultType = Table
+

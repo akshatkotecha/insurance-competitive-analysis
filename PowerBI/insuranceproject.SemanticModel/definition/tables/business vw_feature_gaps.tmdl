@@ -1,0 +1,67 @@
+table 'business vw_feature_gaps'
+	lineageTag: b1887062-df69-460b-961b-347d9fdd6ff2
+
+	column feature_name
+		dataType: string
+		lineageTag: b705b665-167a-49fa-892f-8bd4f315e5b3
+		summarizeBy: none
+		sourceColumn: feature_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column abhi_has
+		dataType: int64
+		formatString: 0
+		lineageTag: 16075cf9-d829-408a-b562-9f2ac25aa184
+		summarizeBy: sum
+		sourceColumn: abhi_has
+
+		annotation SummarizationSetBy = Automatic
+
+	column rivals_with
+		dataType: int64
+		formatString: 0
+		lineageTag: 0f06ead1-003b-4b3a-89e3-fc4119eb75b8
+		summarizeBy: sum
+		sourceColumn: rivals_with
+
+		annotation SummarizationSetBy = Automatic
+
+	column rivals_total
+		dataType: int64
+		formatString: 0
+		lineageTag: bd7e708f-c690-4b55-91dd-fca4afd31486
+		summarizeBy: sum
+		sourceColumn: rivals_total
+
+		annotation SummarizationSetBy = Automatic
+
+	column rival_adoption_pct
+		dataType: double
+		lineageTag: 410cc96e-5b35-4e39-ada5-abca7b7d4079
+		summarizeBy: sum
+		sourceColumn: rival_adoption_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column gap_status
+		dataType: string
+		lineageTag: 4378f252-018d-429d-a428-bd90f8db1f54
+		summarizeBy: none
+		sourceColumn: gap_status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'business vw_feature_gaps' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("AKSHAT\SQLEXPRESS", "INSURANCEDB"),
+				    business_vw_feature_gaps = Source{[Schema="business",Item="vw_feature_gaps"]}[Data]
+				in
+				    business_vw_feature_gaps
+
+	annotation PBI_ResultType = Table
+

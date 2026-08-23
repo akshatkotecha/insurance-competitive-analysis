@@ -1,0 +1,78 @@
+{
+  "name": "Insurance Competitive Intelligence — Dark",
+  "dataColors": [
+    "#3987e5",
+    "#d95926",
+    "#199e70",
+    "#c98500",
+    "#d55181",
+    "#008300",
+    "#9085e9",
+    "#e66767"
+  ],
+  "background": "#1a1a19",
+  "foreground": "#ffffff",
+  "foregroundNeutralSecondary": "#c3c2b7",
+  "foregroundNeutralTertiary": "#898781",
+  "backgroundLight": "#222221",
+  "backgroundNeutral": "#2c2c2a",
+  "tableAccent": "#3987e5",
+  "good": "#0ca30c",
+  "neutral": "#8a8a8a",
+  "bad": "#d03b3b",
+  "maximum": "#d03b3b",
+  "center": "#8a8a8a",
+  "minimum": "#0ca30c",
+  "null": "#52514e",
+  "textClasses": {
+    "callout": { "fontSize": 32, "fontFace": "Segoe UI Semibold", "color": "#ffffff" },
+    "title": { "fontSize": 14, "fontFace": "Segoe UI Semibold", "color": "#ffffff" },
+    "header": { "fontSize": 12, "fontFace": "Segoe UI Semibold", "color": "#c3c2b7" },
+    "label": { "fontSize": 10, "fontFace": "Segoe UI", "color": "#c3c2b7" }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [{ "show": true, "color": { "solid": { "color": "#1a1a19" } }, "transparency": 0 }],
+        "border": [{ "show": true, "color": { "solid": { "color": "#2c2c2a" } }, "radius": 12 }],
+        "outspacePane": [{ "backgroundColor": { "solid": { "color": "#1a1a19" } } }]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [{ "color": { "solid": { "color": "#0d0d0d" } }, "transparency": 0 }]
+      }
+    },
+    "card": {
+      "*": {
+        "labels": [{ "color": "#ffffff", "fontSize": 28 }],
+        "categoryLabels": [{ "color": "#898781", "fontSize": 11 }]
+      }
+    },
+    "multiRowCard": {
+      "*": {
+        "card": [{ "backgroundColor": { "solid": { "color": "#1a1a19" } } }]
+      }
+    },
+    "slicer": {
+      "*": {
+        "background": [{ "show": true, "color": { "solid": { "color": "#1a1a19" } } }],
+        "items": [{ "fontColor": "#c3c2b7", "background": { "solid": { "color": "#222221" } } }]
+      }
+    },
+    "tableEx": {
+      "*": {
+        "grid": [{ "gridVertical": false, "rowPadding": 6 }],
+        "columnHeaders": [{ "backgroundColor": { "solid": { "color": "#222221" } }, "fontColor": "#ffffff", "bold": true }],
+        "values": [{ "backgroundColor": { "solid": { "color": "#1a1a19" } }, "fontColor": "#c3c2b7" }]
+      }
+    },
+    "pivotTable": {
+      "*": {
+        "grid": [{ "gridVertical": false, "rowPadding": 6 }],
+        "columnHeaders": [{ "backgroundColor": { "solid": { "color": "#222221" } }, "fontColor": "#ffffff", "bold": true }],
+        "values": [{ "backgroundColor": { "solid": { "color": "#1a1a19" } }, "fontColor": "#c3c2b7" }]
+      }
+    }
+  }
+}

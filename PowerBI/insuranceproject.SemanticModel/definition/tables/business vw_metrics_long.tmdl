@@ -1,0 +1,106 @@
+table 'business vw_metrics_long'
+	lineageTag: a5ee6c50-a475-47a5-b2db-26e3d9576a04
+
+	column company_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 5ea8df5a-2031-4f42-bd48-552a5506e306
+		summarizeBy: sum
+		sourceColumn: company_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column company_name
+		dataType: string
+		lineageTag: 955e4375-789f-4921-a849-1e2baca3a3ff
+		summarizeBy: none
+		sourceColumn: company_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_focal
+		dataType: int64
+		formatString: 0
+		lineageTag: 3e45682d-21a7-438b-be9c-0376bd1898cf
+		summarizeBy: sum
+		sourceColumn: is_focal
+
+		annotation SummarizationSetBy = Automatic
+
+	column company_role
+		dataType: string
+		lineageTag: 97635efa-aa9b-4b0f-8404-b0b33485358a
+		summarizeBy: none
+		sourceColumn: company_role
+
+		annotation SummarizationSetBy = Automatic
+
+	column financial_year
+		dataType: string
+		lineageTag: ad96d701-8c71-473c-ad40-24c4df3ce2d4
+		summarizeBy: none
+		sourceColumn: financial_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column fy_number
+		dataType: int64
+		formatString: 0
+		lineageTag: 4462471d-495a-4db4-a8c1-e9b8b2e0560f
+		summarizeBy: sum
+		sourceColumn: fy_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column metric_name
+		dataType: string
+		lineageTag: a4affc0d-4ea7-4542-bd98-7c4da147a28f
+		summarizeBy: none
+		sourceColumn: metric_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column metric_value
+		dataType: double
+		lineageTag: 2a8c9058-97a4-46a3-bd37-a231d878c21c
+		summarizeBy: sum
+		sourceColumn: metric_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column metric_group
+		dataType: string
+		lineageTag: 17c12ca3-eac9-4beb-aa96-92df50701505
+		summarizeBy: none
+		sourceColumn: metric_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column metric_unit
+		dataType: string
+		lineageTag: 069a8aea-22ae-470a-a046-d8af2cd2b04f
+		summarizeBy: none
+		sourceColumn: metric_unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column higher_is_better
+		dataType: int64
+		formatString: 0
+		lineageTag: d4ddd095-6e19-4a0d-a1b8-99c522ded5e0
+		summarizeBy: sum
+		sourceColumn: higher_is_better
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'business vw_metrics_long' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("AKSHAT\SQLEXPRESS", "INSURANCEDB"),
+				    business_vw_metrics_long = Source{[Schema="business",Item="vw_metrics_long"]}[Data]
+				in
+				    business_vw_metrics_long
+

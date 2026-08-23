@@ -1,0 +1,93 @@
+table 'business vw_slab_coverage'
+	lineageTag: 05838b40-70bb-40b8-a593-b0e32e7fc7fa
+
+	column company_name
+		dataType: string
+		lineageTag: 9a616186-2fcf-4e0d-9434-8c06fe916619
+		summarizeBy: none
+		sourceColumn: company_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_name
+		dataType: string
+		lineageTag: 4f83355a-13de-4780-a00d-07f8ad7a21fb
+		summarizeBy: none
+		sourceColumn: product_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column si_label
+		dataType: string
+		lineageTag: 0b37902a-9273-485f-a712-86959131728c
+		summarizeBy: none
+		sourceColumn: si_label
+
+		annotation SummarizationSetBy = Automatic
+
+	column sum_insured
+		dataType: double
+		lineageTag: e192c516-6240-4c7f-9be9-9ee9f4c35ab3
+		summarizeBy: sum
+		sourceColumn: sum_insured
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rate_points
+		dataType: int64
+		formatString: 0
+		lineageTag: bfbf1d20-e34f-49cf-a03b-2c502d723dd8
+		summarizeBy: sum
+		sourceColumn: rate_points
+
+		annotation SummarizationSetBy = Automatic
+
+	column min_age
+		dataType: int64
+		formatString: 0
+		lineageTag: a3eb63b4-e60d-414b-99b3-d406c505fa22
+		summarizeBy: sum
+		sourceColumn: min_age
+
+		annotation SummarizationSetBy = Automatic
+
+	column max_age
+		dataType: int64
+		formatString: 0
+		lineageTag: 6993bb63-cb01-4ada-9787-8f6280bd8ac0
+		summarizeBy: sum
+		sourceColumn: max_age
+
+		annotation SummarizationSetBy = Automatic
+
+	column cheapest
+		dataType: double
+		lineageTag: 056577cf-0a8a-4a00-b53b-b268f11ca72b
+		summarizeBy: sum
+		sourceColumn: cheapest
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column dearest
+		dataType: double
+		lineageTag: 94b23d97-f57f-42b6-bae5-fee3e992414f
+		summarizeBy: sum
+		sourceColumn: dearest
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'business vw_slab_coverage' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("AKSHAT\SQLEXPRESS", "INSURANCEDB"),
+				    business_vw_slab_coverage = Source{[Schema="business",Item="vw_slab_coverage"]}[Data]
+				in
+				    business_vw_slab_coverage
+

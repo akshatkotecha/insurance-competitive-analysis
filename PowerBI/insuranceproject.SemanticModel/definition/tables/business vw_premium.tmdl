@@ -1,0 +1,186 @@
+table 'business vw_premium'
+	lineageTag: 14a9a9e7-2dbd-4131-b30a-188067eab495
+
+	column premium_id
+		dataType: int64
+		formatString: 0
+		lineageTag: fcab2cad-1820-4739-9af0-402fe823ebc0
+		summarizeBy: sum
+		sourceColumn: premium_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_id
+		dataType: int64
+		formatString: 0
+		lineageTag: ec7a8536-f155-4df1-81ae-cfae2891245e
+		summarizeBy: sum
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column company_name
+		dataType: string
+		lineageTag: aca6d982-05d4-4b65-a01f-23f4c442c058
+		summarizeBy: none
+		sourceColumn: company_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_name
+		dataType: string
+		lineageTag: 5b977e2b-3035-4c6d-8347-ad7e33d1d12b
+		summarizeBy: none
+		sourceColumn: product_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_label
+		dataType: string
+		lineageTag: a850321e-eca8-4a12-8811-db4da1341947
+		summarizeBy: none
+		sourceColumn: product_label
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_focal
+		dataType: int64
+		formatString: 0
+		lineageTag: 2d1dea0a-4062-4b6c-b384-27dd4e3c495d
+		summarizeBy: sum
+		sourceColumn: is_focal
+
+		annotation SummarizationSetBy = Automatic
+
+	column company_role
+		dataType: string
+		lineageTag: 023ed152-2ca8-427e-bf28-360bf599f1b2
+		summarizeBy: none
+		sourceColumn: company_role
+
+		annotation SummarizationSetBy = Automatic
+
+	column age
+		dataType: int64
+		formatString: 0
+		lineageTag: 0ec00f50-ed59-4623-ad61-4943bd99a574
+		summarizeBy: sum
+		sourceColumn: age
+
+		annotation SummarizationSetBy = Automatic
+
+	column age_band
+		dataType: string
+		lineageTag: 22169016-d4d6-485a-a09d-a7813501dcd3
+		summarizeBy: none
+		sourceColumn: age_band
+
+		annotation SummarizationSetBy = Automatic
+
+	column sum_insured
+		dataType: double
+		lineageTag: 28484111-32e6-4001-861c-4e8375b284b6
+		summarizeBy: sum
+		sourceColumn: sum_insured
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column si_lakhs
+		dataType: int64
+		formatString: 0
+		lineageTag: bd75280f-bdee-4df6-9b1c-12a5dfaaa477
+		summarizeBy: sum
+		sourceColumn: si_lakhs
+
+		annotation SummarizationSetBy = Automatic
+
+	column si_label
+		dataType: string
+		lineageTag: bedcae06-febe-469c-b230-9a71bd1d6e1a
+		summarizeBy: none
+		sourceColumn: si_label
+
+		annotation SummarizationSetBy = Automatic
+
+	column premium_amount
+		dataType: double
+		lineageTag: 87dcde88-1d8b-45d0-b742-197e365b091b
+		summarizeBy: sum
+		sourceColumn: premium_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column family_type
+		dataType: string
+		lineageTag: 780c2745-c219-40d0-ad1d-629b1ca4c74a
+		summarizeBy: none
+		sourceColumn: family_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column adults
+		dataType: int64
+		formatString: 0
+		lineageTag: 5b088523-ded6-4c27-964b-495b8da97790
+		summarizeBy: sum
+		sourceColumn: adults
+
+		annotation SummarizationSetBy = Automatic
+
+	column children
+		dataType: int64
+		formatString: 0
+		lineageTag: 23bbe9f9-f6af-48e0-969f-396b052f0f3b
+		summarizeBy: sum
+		sourceColumn: children
+
+		annotation SummarizationSetBy = Automatic
+
+	column composition
+		dataType: string
+		lineageTag: 105ecc24-5dd5-4980-9354-58ec3060a97a
+		summarizeBy: none
+		sourceColumn: composition
+
+		annotation SummarizationSetBy = Automatic
+
+	column city_tier
+		dataType: string
+		lineageTag: a360b3fe-c53f-4dc0-a6c2-ff02e7010f7f
+		summarizeBy: none
+		sourceColumn: city_tier
+
+		annotation SummarizationSetBy = Automatic
+
+	column policy_term
+		dataType: int64
+		formatString: 0
+		lineageTag: 4260aaaf-e499-446c-9a12-0612ca427ea5
+		summarizeBy: sum
+		sourceColumn: policy_term
+
+		annotation SummarizationSetBy = Automatic
+
+	column premium_per_lakh
+		dataType: double
+		lineageTag: c2b3c62e-3539-4abf-a730-16ff7e1ca4d1
+		summarizeBy: sum
+		sourceColumn: premium_per_lakh
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'business vw_premium' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("AKSHAT\SQLEXPRESS", "INSURANCEDB"),
+				    business_vw_premium = Source{[Schema="business",Item="vw_premium"]}[Data]
+				in
+				    business_vw_premium
+

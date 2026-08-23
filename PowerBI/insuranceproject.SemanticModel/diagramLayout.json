@@ -1,0 +1,256 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 48.269991002323721,
+        "y": 356.77820976763229
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 2090.19683998791,
+            "y": 924.17514190311158
+          },
+          "nodeIndex": "business vw_abhi_scorecard",
+          "nodeLineageTag": "ae8e5cfb-228b-4e4d-be24-2df01713dcee",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1856.1968399879102,
+            "y": 874.17514190311158
+          },
+          "nodeIndex": "business vw_abhi_vs_market",
+          "nodeLineageTag": "304d9781-1113-454c-a75a-bb1c7a1dc082",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1001.9885480319721,
+            "y": 653.24029161258272
+          },
+          "nodeIndex": "business vw_data_quality",
+          "nodeLineageTag": "aace33fa-3f03-41d8-964d-cdf73b887f81",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 701.11140806291507,
+            "y": 611.62420047792875
+          },
+          "nodeIndex": "business vw_dim_product",
+          "nodeLineageTag": "207e0da7-4627-4cca-be06-b2df2b91fdcd",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 703.6539988767239,
+            "y": 281.7582458294919
+          },
+          "nodeIndex": "business vw_feature_gaps",
+          "nodeLineageTag": "b1887062-df69-460b-961b-347d9fdd6ff2",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 502.4133244578934
+          },
+          "nodeIndex": "business vw_feature_matrix",
+          "nodeLineageTag": "9ec6b9a3-bc22-4675-b73a-e7396e918c70",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1572.1968399879102,
+            "y": 874.17514190311158
+          },
+          "nodeIndex": "business vw_head_to_head",
+          "nodeLineageTag": "25c5c2b5-4ce4-40b4-bc48-c9b7e274c166",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 683.00300882190231,
+            "y": 913.58673544589749
+          },
+          "nodeIndex": "business vw_metric_coverage",
+          "nodeLineageTag": "30c4825a-ac0f-4cc8-be7e-62275c9c5167",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 990.27355277420281,
+            "y": 301.00420828092979
+          },
+          "nodeIndex": "business vw_metric_rank",
+          "nodeLineageTag": "531827d0-78bc-470d-b1b1-29ab55514063",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1069.2504108237927,
+            "y": -50
+          },
+          "nodeIndex": "business vw_metrics_cagr",
+          "nodeLineageTag": "e78f9de7-db05-49cc-b4dd-d47270709c87",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 689.87459180072369,
+            "y": 1447.1485552433655
+          },
+          "nodeIndex": "business vw_metrics_growth",
+          "nodeLineageTag": "5fc675cc-b7d2-4eeb-add7-7d2b68c8de0d",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 414.49903868541196,
+            "y": 475.01491310515553
+          },
+          "nodeIndex": "business vw_metrics_latest",
+          "nodeLineageTag": "6e2380ea-bc00-4eba-802f-68ee52efb9c4",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1288.1968399879102,
+            "y": 795.74671626861891
+          },
+          "nodeIndex": "business vw_metrics_long",
+          "nodeLineageTag": "a5ee6c50-a475-47a5-b2db-26e3d9576a04",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1111.4228855352451,
+            "y": 1798.3502838062229
+          },
+          "nodeIndex": "business vw_peer_comparison",
+          "nodeLineageTag": "0be15023-1d78-4244-bc5c-fc7d4c4f1493",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 978.6639930748097,
+            "y": 1447.1324700529715
+          },
+          "nodeIndex": "business vw_policy_terms",
+          "nodeLineageTag": "440da6ea-0854-4cc1-9d36-8046884c2392",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1264.919457574571,
+            "y": 1152.9064714063063
+          },
+          "nodeIndex": "business vw_premium",
+          "nodeLineageTag": "14a9a9e7-2dbd-4131-b30a-188067eab495",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 223.10125825407874,
+            "y": 831.32155481213306
+          },
+          "nodeIndex": "business vw_price_grid",
+          "nodeLineageTag": "88a50423-ab32-4c69-b702-918c5a13ee8c",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 393.11911064765434,
+            "y": 1197.2412149758982
+          },
+          "nodeIndex": "business vw_slab_coverage",
+          "nodeLineageTag": "05838b40-70bb-40b8-a593-b0e32e7fc7fa",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 31.765767295675996,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

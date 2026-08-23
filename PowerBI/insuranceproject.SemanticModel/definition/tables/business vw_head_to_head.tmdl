@@ -1,0 +1,101 @@
+table 'business vw_head_to_head'
+	lineageTag: 25c5c2b5-4ce4-40b4-bc48-c9b7e274c166
+
+	column rival
+		dataType: string
+		lineageTag: 0d3b00bb-c6e1-4632-b9d8-e830e6632d82
+		summarizeBy: none
+		sourceColumn: rival
+
+		annotation SummarizationSetBy = Automatic
+
+	column rival_product
+		dataType: string
+		lineageTag: 382cb8f6-3dbb-48f1-a8cc-6501274ead44
+		summarizeBy: none
+		sourceColumn: rival_product
+
+		annotation SummarizationSetBy = Automatic
+
+	column age_band
+		dataType: string
+		lineageTag: 46cc22db-481c-47c4-b97c-b99f49972626
+		summarizeBy: none
+		sourceColumn: age_band
+
+		annotation SummarizationSetBy = Automatic
+
+	column si_label
+		dataType: string
+		lineageTag: f215cca0-58b7-4ac6-801f-55cacac81e98
+		summarizeBy: none
+		sourceColumn: si_label
+
+		annotation SummarizationSetBy = Automatic
+
+	column sum_insured
+		dataType: double
+		lineageTag: 3588ea05-4079-4be9-99a9-6f49179ca5a3
+		summarizeBy: sum
+		sourceColumn: sum_insured
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column abhi_premium
+		dataType: int64
+		formatString: 0
+		lineageTag: fe49aef9-f22c-4730-9a4e-72a57cd77b5e
+		summarizeBy: sum
+		sourceColumn: abhi_premium
+
+		annotation SummarizationSetBy = Automatic
+
+	column rival_premium
+		dataType: int64
+		formatString: 0
+		lineageTag: 281f1442-3856-4531-8ef2-930c91ef24fc
+		summarizeBy: sum
+		sourceColumn: rival_premium
+
+		annotation SummarizationSetBy = Automatic
+
+	column gap_rupees
+		dataType: int64
+		formatString: 0
+		lineageTag: 560feaba-dfde-4196-8f3f-d4ee35ee3083
+		summarizeBy: sum
+		sourceColumn: gap_rupees
+
+		annotation SummarizationSetBy = Automatic
+
+	column index_vs_rival
+		dataType: double
+		lineageTag: b3bb9d1e-05a0-4a41-b761-4e4b58158659
+		summarizeBy: sum
+		sourceColumn: index_vs_rival
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column winner
+		dataType: string
+		lineageTag: bd52297e-3cd8-42a0-816f-002638f60719
+		summarizeBy: none
+		sourceColumn: winner
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'business vw_head_to_head' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("AKSHAT\SQLEXPRESS", "INSURANCEDB"),
+				    business_vw_head_to_head = Source{[Schema="business",Item="vw_head_to_head"]}[Data]
+				in
+				    business_vw_head_to_head
+
+	annotation PBI_ResultType = Table
+

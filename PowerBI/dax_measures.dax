@@ -1,0 +1,206 @@
+// Paste these one at a time: select the table in the Fields pane →
+// Table tools → New measure → paste the formula (everything after
+// the "=" on the named line) → Enter. Grouped by which table/page
+// they belong to.
+
+// ============================================================
+// TABLE: vw_abhi_vs_market  —  Position page
+//
+// IMPORTANT — read before building the KPI cards or the matrix.
+// competitor_count varies row to row from 1 to 6. The entire 2 Cr
+// column is competitor_count = 1 (market_min = market_max — it's
+// literally one rival's premium, not a market average), and 75 L is
+// only 3-4. An unweighted AVERAGE(price_index) over all 47 rows
+// blends those thin, unreliable comparisons in at full strength: it
+// reads 87.5 with them included vs. 90.8 restricted to segments with
+// 5+ competitors, and "segments where ABHI is cheapest" reads 14/47
+// vs. 7/36 — over a third of that headline "win count" comes from
+// single-competitor comparisons. Every measure below that matters for
+// a headline number has a "(Reliable)" version filtered to
+// competitor_count >= 5, matching the Streamlit dashboard's threshold
+// exactly — use those on the KPI cards, and disclose the all-segment
+// number in a caption/tooltip rather than omitting it.
+// ============================================================
+
+Avg Price Index (Reliable) =
+CALCULATE (
+    AVERAGE ( 'vw_abhi_vs_market'[price_index] ),
+    'vw_abhi_vs_market'[competitor_count] >= 5
+)
+// This is the "90.8" KPI card — use THIS one as the headline number,
+// not a plain AVERAGE(price_index).
+
+Avg Price Index (All Segments) =
+AVERAGE ( 'vw_abhi_vs_market'[price_index] )
+// Show as a small caption under the card, e.g. a Card visual's
+// category label bound to:
+//   "All " & COUNTROWS('vw_abhi_vs_market') & " segments: " &
+//   FORMAT([Avg Price Index (All Segments)], "0.0")
+// — disclose it, don't hide it.
+
+Reliable Segment Count =
+CALCULATE ( COUNTROWS ( 'vw_abhi_vs_market' ), 'vw_abhi_vs_market'[competitor_count] >= 5 )
+
+Thin Segment Count =
+COUNTROWS ( 'vw_abhi_vs_market' ) - [Reliable Segment Count]
+// "11 thin segments excluded" caption.
+
+Segments Below Market % (Reliable) =
+VAR Total = [Reliable Segment Count]
+VAR Below =
+    CALCULATE (
+        COUNTROWS ( 'vw_abhi_vs_market' ),
+        'vw_abhi_vs_market'[price_index] < 90,
+        'vw_abhi_vs_market'[competitor_count] >= 5
+    )
+RETURN DIVIDE ( Below, Total )
+// Format: Percentage, 0 decimal places.
+
+Segments Above Market % (Reliable) =
+VAR Total = [Reliable Segment Count]
+VAR Above =
+    CALCULATE (
+        COUNTROWS ( 'vw_abhi_vs_market' ),
+        'vw_abhi_vs_market'[price_index] > 105,
+        'vw_abhi_vs_market'[competitor_count] >= 5
+    )
+RETURN DIVIDE ( Above, Total )
+// Format: Percentage, 0 decimal places.
+
+Cheapest Segments (Reliable) =
+CALCULATE (
+    SUM ( 'vw_abhi_vs_market'[is_cheapest] ),
+    'vw_abhi_vs_market'[competitor_count] >= 5
+)
+// "7 / 36" — pair with [Reliable Segment Count] for the denominator.
+// Disclose SUM('vw_abhi_vs_market'[is_cheapest]) (all 47) as a caption,
+// same pattern as the price-index card above.
+
+Avg Premium Gap =
+AVERAGE ( 'vw_abhi_vs_market'[gap_rupees] )
+// Format: Currency (₹), 0 decimal places. Negative = ABHI cheaper —
+// add a second small card/label with:
+//   Gap Direction = IF ( [Avg Premium Gap] < 0, "ABHI cheaper", "ABHI dearer" )
+// (gap_rupees isn't averaged into a single ratio the way price_index
+// is, so this one doesn't carry the same reliability distortion — it's
+// fine as a plain average across all 47 rows.)
+
+Price Index Label =
+VAR v = AVERAGE ( 'vw_abhi_vs_market'[price_index] )
+VAR n = AVERAGE ( 'vw_abhi_vs_market'[competitor_count] )
+RETURN
+    IF (
+        ISBLANK ( v ), BLANK (),
+        FORMAT ( v, "0" ) & IF ( n < 5, " (n=" & FORMAT ( n, "0" ) & ")", "" )
+    )
+// Use THIS as the Matrix's Values field instead of price_index
+// directly — thin cells then show their sample size right in the
+// grid ("61 (n=1)"), same as the Streamlit heatmap, so nobody has to
+// hover to notice a cell is a single head-to-head.
+
+Price Index Cell Color =
+VAR v = AVERAGE ( 'vw_abhi_vs_market'[price_index] )
+VAR n = AVERAGE ( 'vw_abhi_vs_market'[competitor_count] )
+RETURN
+    SWITCH (
+        TRUE (),
+        ISBLANK ( v ), "#2c2c2a",
+        n < 5, "#3a3a38",
+        v < 90, "#0ca30c",
+        v <= 105, "#8a8a8a",
+        "#d03b3b"
+    )
+// Bind this to the Matrix visual: Format pane → Cell elements →
+// "Values" → Conditional formatting → Background color →
+// Format by: Field value → Field = [Price Index Cell Color]. Build the
+// matrix itself: rows = age_band, columns = si_label, values =
+// [Price Index Label] (not raw price_index — see above).
+//
+// Thin cells (competitor_count < 5) deliberately flatten to a neutral
+// grey instead of the green/red gradient. Power BI conditional
+// formatting can't do a semi-transparent "wash" the way the Streamlit
+// heatmap does (that used a second overlay trace at partial opacity —
+// no plotly-equivalent layering exists for a Power BI Matrix), so
+// flattening to neutral is the honest substitute: a green 2 Cr cell
+// would visually claim "ABHI is aggressively priced against the
+// market" when it's actually one data point against one rival, and
+// that's exactly the reading that shouldn't be color-coded as if it
+// were confident.
+
+
+// ============================================================
+// TABLE: vw_data_quality  —  Position page (coverage strip)
+// ============================================================
+
+Coverage Status Color =
+SWITCH (
+    TRUE (),
+    SELECTEDVALUE ( 'vw_data_quality'[caveat] ) = "OK", "#0ca30c",
+    SELECTEDVALUE ( 'vw_data_quality'[premium_rows] ) = 0, "#d03b3b",
+    "#c98500"
+)
+// Use as a Card visual's category-label conditional formatting, or as
+// a font-color rule on a small multi-row card per insurer.
+
+
+// ============================================================
+// TABLE: vw_peer_comparison  —  Peer comparison page
+// ============================================================
+
+Is Focal Row Color =
+IF ( SELECTEDVALUE ( 'vw_peer_comparison'[is_focal] ) = 1, "#264a73", "#1a1a19" )
+// Table visual → Format → Cell elements → row background →
+// Conditional formatting → Field value → this measure.
+// (is_focal = 1 only for ABHI, so this highlights exactly one row.)
+
+
+// ============================================================
+// TABLE: vw_metrics_long  —  Trends page
+// ============================================================
+
+// No extra measure needed — metric_value is already a plain numeric
+// column and metric_name is already long/tidy. Line chart: Axis =
+// financial_year, Legend = company_name, Values = metric_value (Sum
+// or Average, doesn't matter — one row per company per year), and a
+// Slicer visual on metric_name to reproduce the dropdown. Default the
+// slicer's selection to "GWP" and add a text box noting only GWP/ROE
+// have full coverage (matches the app's caption).
+
+
+// ============================================================
+// TABLE: vw_premium  —  Pricing detail page
+// ============================================================
+
+// This one is a CALCULATED COLUMN, not a measure: select 'vw_premium' in
+// the Fields pane → Table tools → New column (not New measure) → paste
+// the two lines below.
+Cover Label =
+VAR si = 'vw_premium'[sum_insured]
+RETURN IF ( si >= 10000000, FORMAT ( si / 10000000, "0.##" ) & " Cr", FORMAT ( si / 100000, "0.##" ) & " L" )
+// The view's own si_label column collides — 700000 and 750000 both show
+// "7 L" — because it's a fixed display string, not derived per-row. This
+// column recomputes it precisely (7 L vs 7.5 L), so unlike si_label it's
+// a true 1:1 label: right-click it in the Fields pane → "Sort by column"
+// → sum_insured, which Power BI will now accept (that failed on si_label
+// itself for the same collision reason).
+
+Median Premium Per Lakh =
+MEDIAN ( 'vw_premium'[premium_per_lakh] )
+// Line chart: Axis = Cover Label (sorted by sum_insured, see above),
+// Legend = company_name. This reproduces the slab-median line chart.
+
+Selected Premium =
+SUM ( 'vw_premium'[premium_amount] )
+// Bar chart: Axis = company_name, Values = [Selected Premium], sorted
+// descending. Add four Slicer visuals on the SAME page bound to age,
+// sum_insured, city_tier, composition, and set each slicer to
+// single-select (Format → Slicer settings → Selection → Single select)
+// so exactly one value picks one exact row per company. Power BI
+// cross-filters the bar chart automatically the moment those slicers
+// exist — no callback code required. This is the "select an amount and
+// an age, see it for all insurers" feature, built entirely with slicers.
+// (Deliberately plain SUM, not a SELECTEDVALUE/CALCULATE measure — with
+// single-select slicers the ambient filter context already does the
+// narrowing, and a SELECTEDVALUE-based version goes blank the moment
+// someone multi-selects, which is a worse failure mode than just
+// summing across whatever's selected.)

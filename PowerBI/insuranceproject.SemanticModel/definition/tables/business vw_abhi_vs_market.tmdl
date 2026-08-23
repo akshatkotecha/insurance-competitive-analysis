@@ -1,0 +1,133 @@
+table 'business vw_abhi_vs_market'
+	lineageTag: 304d9781-1113-454c-a75a-bb1c7a1dc082
+
+	column age_band
+		dataType: string
+		lineageTag: 06cf2972-c934-439e-866f-c28f1ea15254
+		summarizeBy: none
+		sourceColumn: age_band
+
+		annotation SummarizationSetBy = Automatic
+
+	column si_label
+		dataType: string
+		lineageTag: f03e670d-9b87-42e1-9908-9b125727ed17
+		summarizeBy: none
+		sourceColumn: si_label
+		sortByColumn: sum_insured
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column sum_insured
+		dataType: double
+		lineageTag: acd87b00-1832-4e5f-b382-2ac83b6f4637
+		summarizeBy: sum
+		sourceColumn: sum_insured
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column abhi_premium
+		dataType: int64
+		formatString: 0
+		lineageTag: 2f1556f1-8ce3-472f-b5dd-f19493a1ca20
+		summarizeBy: sum
+		sourceColumn: abhi_premium
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_avg
+		dataType: int64
+		formatString: 0
+		lineageTag: b0f77695-25f8-43ef-b16c-3159c9d153a3
+		summarizeBy: sum
+		sourceColumn: market_avg
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_min
+		dataType: int64
+		formatString: 0
+		lineageTag: bab40c57-d70a-46f9-b9b3-3903ea3cde26
+		summarizeBy: sum
+		sourceColumn: market_min
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_max
+		dataType: int64
+		formatString: 0
+		lineageTag: 5d4c653c-188b-4cdf-802f-4f01234a03f5
+		summarizeBy: sum
+		sourceColumn: market_max
+
+		annotation SummarizationSetBy = Automatic
+
+	column competitor_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 7e8dc0e9-47a1-4cf4-9b52-eef2b4a8b144
+		summarizeBy: sum
+		sourceColumn: competitor_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column gap_rupees
+		dataType: int64
+		formatString: 0
+		lineageTag: e5aa71ec-9262-413b-8278-512196f8b768
+		summarizeBy: sum
+		sourceColumn: gap_rupees
+
+		annotation SummarizationSetBy = Automatic
+
+	column price_index
+		dataType: double
+		lineageTag: 39a069ba-9257-4f70-bb30-88603f4079ed
+		summarizeBy: sum
+		sourceColumn: price_index
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column position
+		dataType: string
+		lineageTag: 69e2163e-bca9-4629-96a5-f329e5ddfb3a
+		summarizeBy: none
+		sourceColumn: position
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_cheapest
+		dataType: int64
+		formatString: 0
+		lineageTag: c2906404-f14a-4850-aed9-c01bd3c663ea
+		summarizeBy: sum
+		sourceColumn: is_cheapest
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_dearest
+		dataType: int64
+		formatString: 0
+		lineageTag: 09a16335-a41c-4d6b-a661-745f3ad79485
+		summarizeBy: sum
+		sourceColumn: is_dearest
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'business vw_abhi_vs_market' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("AKSHAT\SQLEXPRESS", "INSURANCEDB"),
+				    business_vw_abhi_vs_market = Source{[Schema="business",Item="vw_abhi_vs_market"]}[Data]
+				in
+				    business_vw_abhi_vs_market
+
+	annotation PBI_ResultType = Table
+

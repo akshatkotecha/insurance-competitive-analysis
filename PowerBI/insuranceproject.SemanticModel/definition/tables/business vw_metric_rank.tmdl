@@ -1,0 +1,166 @@
+table 'business vw_metric_rank'
+	lineageTag: 531827d0-78bc-470d-b1b1-29ab55514063
+
+	column company_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 12280041-139a-4e4f-aef2-30ad58041883
+		summarizeBy: sum
+		sourceColumn: company_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column company_name
+		dataType: string
+		lineageTag: 4bc9422e-5bb2-42ba-9806-0614e1f8bd37
+		summarizeBy: none
+		sourceColumn: company_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_focal
+		dataType: int64
+		formatString: 0
+		lineageTag: c4030c4c-72e2-4acf-a645-7b82dbd17642
+		summarizeBy: sum
+		sourceColumn: is_focal
+
+		annotation SummarizationSetBy = Automatic
+
+	column financial_year
+		dataType: string
+		lineageTag: 13788e00-d53d-4fdd-9b6c-739903a9d94b
+		summarizeBy: none
+		sourceColumn: financial_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column fy_number
+		dataType: int64
+		formatString: 0
+		lineageTag: 07afaf0b-7039-4854-8c11-fcab10a2917d
+		summarizeBy: sum
+		sourceColumn: fy_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column metric_name
+		dataType: string
+		lineageTag: 26d7ce76-9711-45b1-aad4-18bc73513388
+		summarizeBy: none
+		sourceColumn: metric_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column metric_group
+		dataType: string
+		lineageTag: 0c550c1d-2653-4204-824d-2bd416677bbf
+		summarizeBy: none
+		sourceColumn: metric_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column metric_unit
+		dataType: string
+		lineageTag: dc50c018-5b9d-4645-ae08-491017dc6f98
+		summarizeBy: none
+		sourceColumn: metric_unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column metric_value
+		dataType: double
+		lineageTag: 9d652f5f-d4ad-44a2-920d-3ec277f4458e
+		summarizeBy: sum
+		sourceColumn: metric_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column higher_is_better
+		dataType: int64
+		formatString: 0
+		lineageTag: d7704588-586c-433a-b97d-b6262abadf71
+		summarizeBy: sum
+		sourceColumn: higher_is_better
+
+		annotation SummarizationSetBy = Automatic
+
+	column rank_position
+		dataType: int64
+		formatString: 0
+		lineageTag: 1e9b8700-d014-4968-88ac-d3343bcbc650
+		summarizeBy: sum
+		sourceColumn: rank_position
+
+		annotation SummarizationSetBy = Automatic
+
+	column peer_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 7f7d9dc4-3ae6-48a8-b42a-89c41a51f6af
+		summarizeBy: sum
+		sourceColumn: peer_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column peer_avg
+		dataType: double
+		lineageTag: e8f418d7-96a0-47ad-a581-865547380aa7
+		summarizeBy: sum
+		sourceColumn: peer_avg
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column peer_max
+		dataType: double
+		lineageTag: 4eac6fb1-824b-4fdd-bd5b-f387fbae7e75
+		summarizeBy: sum
+		sourceColumn: peer_max
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column peer_min
+		dataType: double
+		lineageTag: 94349041-cdeb-45dc-9615-e5b22224e2ad
+		summarizeBy: sum
+		sourceColumn: peer_min
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column vs_peer_avg
+		dataType: double
+		lineageTag: b9749acb-b969-4af6-9334-8eee67b0e6f0
+		summarizeBy: sum
+		sourceColumn: vs_peer_avg
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rank_band
+		dataType: string
+		lineageTag: bd95ca69-91d7-4314-85bb-28d98ef157aa
+		summarizeBy: none
+		sourceColumn: rank_band
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'business vw_metric_rank' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("AKSHAT\SQLEXPRESS", "INSURANCEDB"),
+				    business_vw_metric_rank = Source{[Schema="business",Item="vw_metric_rank"]}[Data]
+				in
+				    business_vw_metric_rank
+
+	annotation PBI_ResultType = Table
+

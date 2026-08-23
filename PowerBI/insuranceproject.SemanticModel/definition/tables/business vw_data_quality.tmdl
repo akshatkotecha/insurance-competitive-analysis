@@ -1,0 +1,74 @@
+table 'business vw_data_quality'
+	lineageTag: aace33fa-3f03-41d8-964d-cdf73b887f81
+
+	column company_name
+		dataType: string
+		lineageTag: 132fba3f-4641-4f2a-afad-310e3949a08d
+		summarizeBy: none
+		sourceColumn: company_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_name
+		dataType: string
+		lineageTag: 1056dcfd-2205-4e15-8ea2-c3b4ec6794fa
+		summarizeBy: none
+		sourceColumn: product_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column premium_rows
+		dataType: int64
+		formatString: 0
+		lineageTag: 11aa8cf4-9311-4a9b-9f98-10b6dcd6587e
+		summarizeBy: sum
+		sourceColumn: premium_rows
+
+		annotation SummarizationSetBy = Automatic
+
+	column slabs
+		dataType: int64
+		formatString: 0
+		lineageTag: 3fd860d9-88fb-4d47-bb95-11aa36da75ac
+		summarizeBy: sum
+		sourceColumn: slabs
+
+		annotation SummarizationSetBy = Automatic
+
+	column tiers
+		dataType: int64
+		formatString: 0
+		lineageTag: 5ed893b3-79ef-4ed3-9bfd-bdca458d61ae
+		summarizeBy: sum
+		sourceColumn: tiers
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_features
+		dataType: int64
+		formatString: 0
+		lineageTag: f39f5352-90d4-4f81-a77a-ed269dd35f4b
+		summarizeBy: sum
+		sourceColumn: has_features
+
+		annotation SummarizationSetBy = Automatic
+
+	column caveat
+		dataType: string
+		lineageTag: 89664c51-c8cb-4799-9c51-424762bddb7e
+		summarizeBy: none
+		sourceColumn: caveat
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'business vw_data_quality' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("AKSHAT\SQLEXPRESS", "INSURANCEDB"),
+				    business_vw_data_quality = Source{[Schema="business",Item="vw_data_quality"]}[Data]
+				in
+				    business_vw_data_quality
+
+	annotation PBI_ResultType = Table
+
