@@ -120,6 +120,51 @@ table 'business vw_abhi_vs_market'
 
 		annotation SummarizationSetBy = Automatic
 
+	measure 'Avg Price Index (Reliable)' = CALCULATE(AVERAGE('business vw_abhi_vs_market'[price_index]), 'business vw_abhi_vs_market'[competitor_count] >= 5)
+		formatString: 0.0
+		lineageTag: efce368b-843a-472e-8a1b-7be422ecf9f5
+
+	measure 'Avg Price Index (All Segments)' = AVERAGE('business vw_abhi_vs_market'[price_index])
+		formatString: 0.0
+		lineageTag: b9586952-54e8-4f20-b5cf-92fe18a16c4e
+
+	measure 'Reliable Segment Count' = CALCULATE(COUNTROWS('business vw_abhi_vs_market'), 'business vw_abhi_vs_market'[competitor_count] >= 5)
+		formatString: 0
+		lineageTag: d9a7ad67-929e-4bf4-9f54-6c88bf12183a
+
+	measure 'Thin Segment Count' = COUNTROWS('business vw_abhi_vs_market') - [Reliable Segment Count]
+		formatString: 0
+		lineageTag: 89b235b1-adf2-4510-917b-4671c3f863b3
+
+	measure 'Segments Below Market % (Reliable)' = DIVIDE(CALCULATE(COUNTROWS('business vw_abhi_vs_market'), 'business vw_abhi_vs_market'[price_index] < 90, 'business vw_abhi_vs_market'[competitor_count] >= 5), [Reliable Segment Count])
+		formatString: 0%
+		lineageTag: 8af33a62-d850-400c-bc16-eaee159e776d
+
+	measure 'Segments Above Market % (Reliable)' = DIVIDE(CALCULATE(COUNTROWS('business vw_abhi_vs_market'), 'business vw_abhi_vs_market'[price_index] > 105, 'business vw_abhi_vs_market'[competitor_count] >= 5), [Reliable Segment Count])
+		formatString: 0%
+		lineageTag: 7b270493-db13-4b2c-9682-cb2675d2d370
+
+	measure 'Cheapest Segments (Reliable)' = CALCULATE(SUM('business vw_abhi_vs_market'[is_cheapest]), 'business vw_abhi_vs_market'[competitor_count] >= 5)
+		formatString: 0
+		lineageTag: 85a6c286-a6aa-4fda-85de-a7ae1898dfce
+
+	measure 'Cheapest Segments (All)' = SUM('business vw_abhi_vs_market'[is_cheapest])
+		formatString: 0
+		lineageTag: 049f1286-4b2f-4982-b680-8eacd7d6a2d8
+
+	measure 'Avg Premium Gap' = AVERAGE('business vw_abhi_vs_market'[gap_rupees])
+		formatString: #,##0
+		lineageTag: c5052fdc-dd08-4f6e-ba9c-246a766e4b17
+
+	measure 'Gap Direction' = IF([Avg Premium Gap] < 0, "ABHI cheaper", "ABHI dearer")
+		lineageTag: 9b6bddef-b742-498d-9c05-7a683c6b33df
+
+	measure 'Price Index Label' = VAR v = AVERAGE('business vw_abhi_vs_market'[price_index]) VAR n = AVERAGE('business vw_abhi_vs_market'[competitor_count]) RETURN IF(ISBLANK(v), BLANK(), FORMAT(v, "0") & IF(n < 5, " (n=" & FORMAT(n, "0") & ")", ""))
+		lineageTag: face35a6-59b8-4b9b-8108-e18e12482a89
+
+	measure 'Price Index Cell Color' = VAR v = AVERAGE('business vw_abhi_vs_market'[price_index]) VAR n = AVERAGE('business vw_abhi_vs_market'[competitor_count]) RETURN SWITCH(TRUE(), ISBLANK(v), "#2c2c2a", n < 5, "#3a3a38", v < 90, "#0ca30c", v <= 105, "#8a8a8a", "#d03b3b")
+		lineageTag: b587dbf3-b2fb-4d79-a2dc-5ffa00c109b7
+
 	partition 'business vw_abhi_vs_market' = m
 		mode: import
 		source =

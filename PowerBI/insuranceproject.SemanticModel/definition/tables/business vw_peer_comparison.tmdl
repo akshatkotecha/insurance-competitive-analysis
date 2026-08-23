@@ -153,6 +153,9 @@ table 'business vw_peer_comparison'
 
 		annotation SummarizationSetBy = Automatic
 
+	measure 'Is Focal Row Color' = IF(SELECTEDVALUE('business vw_peer_comparison'[is_focal]) = 1, "#264a73", "#1a1a19")
+		lineageTag: ebfcef16-2150-4012-aadd-5edb4688eabd
+
 	partition 'business vw_peer_comparison' = m
 		mode: import
 		source =

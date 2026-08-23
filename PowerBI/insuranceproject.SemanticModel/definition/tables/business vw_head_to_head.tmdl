@@ -30,6 +30,9 @@ table 'business vw_head_to_head'
 		lineageTag: f215cca0-58b7-4ac6-801f-55cacac81e98
 		summarizeBy: none
 		sourceColumn: si_label
+		sortByColumn: sum_insured
+
+		changedProperty = SortByColumn
 
 		annotation SummarizationSetBy = Automatic
 

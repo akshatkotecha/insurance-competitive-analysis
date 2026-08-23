@@ -175,6 +175,22 @@ table 'business vw_premium'
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	column 'Cover Label' = IF('business vw_premium'[sum_insured] >= 10000000, FORMAT('business vw_premium'[sum_insured] / 10000000, "0.##") & " Cr", FORMAT('business vw_premium'[sum_insured] / 100000, "0.##") & " L")
+		dataType: string
+		lineageTag: f3f9ab18-05f4-41ae-a9ed-6dc80dbe8391
+		summarizeBy: none
+		sortByColumn: sum_insured
+
+		annotation SummarizationSetBy = Automatic
+
+	measure 'Median Premium Per Lakh' = MEDIAN('business vw_premium'[premium_per_lakh])
+		formatString: #,##0
+		lineageTag: aa3dedbe-632a-4ca5-b099-113ea80b5d5a
+
+	measure 'Selected Premium' = SUM('business vw_premium'[premium_amount])
+		formatString: #,##0
+		lineageTag: 0b6142b5-fa35-4ec7-bb3c-f7d5a0e2c36f
+
 	partition 'business vw_premium' = m
 		mode: import
 		source =

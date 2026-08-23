@@ -61,6 +61,9 @@ table 'business vw_data_quality'
 
 		annotation SummarizationSetBy = Automatic
 
+	measure 'Coverage Status Color' = SWITCH(TRUE(), SELECTEDVALUE('business vw_data_quality'[caveat]) = "OK", "#0ca30c", SELECTEDVALUE('business vw_data_quality'[premium_rows]) = 0, "#d03b3b", "#c98500")
+		lineageTag: 012184eb-974d-4227-8353-e31a80366e9b
+
 	partition 'business vw_data_quality' = m
 		mode: import
 		source =
