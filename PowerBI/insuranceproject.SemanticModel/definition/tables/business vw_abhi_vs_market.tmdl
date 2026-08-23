@@ -183,6 +183,14 @@ table 'business vw_abhi_vs_market'
 	measure 'ABHI Cheapest Slab Label' = VAR MinPremium = [ABHI Cheapest Slab Premium] RETURN CALCULATE(MAX('business vw_abhi_vs_market'[age_band]) & " · " & MAX('business vw_abhi_vs_market'[si_label]), 'business vw_abhi_vs_market'[abhi_premium] = MinPremium)
 		lineageTag: 8e5c1a2d-9f4b-4e6a-b3c7-2d8f1a6e9c5b
 
+	measure 'ABHI Premium' = SUM('business vw_abhi_vs_market'[abhi_premium])
+		formatString: #,##0
+		lineageTag: 3a9d5c1e-7b4f-4a2d-9e6c-1f8b3d5a7c9e
+
+	measure 'Market Avg Premium' = SUM('business vw_abhi_vs_market'[market_avg])
+		formatString: #,##0
+		lineageTag: 6c2e8f4a-1d9b-4e7c-a3f5-8b6d2c4e9a1f
+
 	partition 'business vw_abhi_vs_market' = m
 		mode: import
 		source =

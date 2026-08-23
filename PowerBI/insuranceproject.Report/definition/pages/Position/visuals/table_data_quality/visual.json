@@ -1,0 +1,180 @@
+{
+  "name": "table_data_quality",
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "queryRef": "business vw_data_quality.company_name",
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business vw_data_quality"
+                    }
+                  },
+                  "Property": "company_name"
+                }
+              },
+              "nativeQueryRef": "company_name"
+            },
+            {
+              "queryRef": "business vw_data_quality.product_name",
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business vw_data_quality"
+                    }
+                  },
+                  "Property": "product_name"
+                }
+              },
+              "nativeQueryRef": "product_name"
+            },
+            {
+              "queryRef": "business vw_data_quality.premium_rows",
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business vw_data_quality"
+                    }
+                  },
+                  "Property": "premium_rows"
+                }
+              },
+              "nativeQueryRef": "premium_rows"
+            },
+            {
+              "queryRef": "business vw_data_quality.slabs",
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business vw_data_quality"
+                    }
+                  },
+                  "Property": "slabs"
+                }
+              },
+              "nativeQueryRef": "slabs"
+            },
+            {
+              "queryRef": "business vw_data_quality.tiers",
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business vw_data_quality"
+                    }
+                  },
+                  "Property": "tiers"
+                }
+              },
+              "nativeQueryRef": "tiers"
+            },
+            {
+              "queryRef": "business vw_data_quality.caveat",
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business vw_data_quality"
+                    }
+                  },
+                  "Property": "caveat"
+                }
+              },
+              "nativeQueryRef": "caveat"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {}
+        },
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "business vw_data_quality"
+                        }
+                      },
+                      "Property": "Coverage Status Color"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "business vw_data_quality.caveat"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Data coverage'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "position": {
+    "x": 20,
+    "y": 500,
+    "width": 1240,
+    "height": 200,
+    "z": 0,
+    "tabOrder": 0
+  },
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json"
+}

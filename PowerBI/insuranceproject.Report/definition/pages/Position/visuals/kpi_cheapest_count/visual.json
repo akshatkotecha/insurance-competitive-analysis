@@ -1,0 +1,106 @@
+{
+  "name": "kpi_cheapest_count",
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "queryRef": "business vw_abhi_vs_market.Cheapest Segments (Reliable)",
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business vw_abhi_vs_market"
+                    }
+                  },
+                  "Property": "Cheapest Segments (Reliable)"
+                }
+              },
+              "nativeQueryRef": "Cheapest Segments (Reliable)"
+            },
+            {
+              "queryRef": "business vw_abhi_vs_market.Cheapest Segments (All)",
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business vw_abhi_vs_market"
+                    }
+                  },
+                  "Property": "Cheapest Segments (All)"
+                }
+              },
+              "nativeQueryRef": "Cheapest Segments (All)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "business vw_abhi_vs_market"
+                  }
+                },
+                "Property": "Cheapest Segments (Reliable)"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {},
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segments where ABHI is cheapest'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "position": {
+    "x": 950,
+    "y": 20,
+    "width": 290,
+    "height": 140,
+    "z": 0,
+    "tabOrder": 0
+  },
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json"
+}
