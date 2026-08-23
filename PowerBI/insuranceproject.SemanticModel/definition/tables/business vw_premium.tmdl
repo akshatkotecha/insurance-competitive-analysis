@@ -187,6 +187,14 @@ table 'business vw_premium'
 		formatString: #,##0
 		lineageTag: aa3dedbe-632a-4ca5-b099-113ea80b5d5a
 
+	measure 'Sum Insured (Scatter)' = AVERAGE('business vw_premium'[sum_insured])
+		formatString: #,##0
+		lineageTag: 2b7e4c9a-6d1f-4a8b-9e3c-7f5a2d8b6c4e
+
+	measure 'Premium Per Lakh (Scatter)' = AVERAGE('business vw_premium'[premium_per_lakh])
+		formatString: #,##0
+		lineageTag: 5d9a3f7c-1e6b-4c2d-8a4f-3b7e9d1c5a8f
+
 	measure 'Selected Premium' = SUM('business vw_premium'[premium_amount])
 		formatString: #,##0
 		lineageTag: 0b6142b5-fa35-4ec7-bb3c-f7d5a0e2c36f

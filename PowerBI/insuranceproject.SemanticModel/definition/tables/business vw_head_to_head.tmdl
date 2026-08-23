@@ -91,6 +91,10 @@ table 'business vw_head_to_head'
 
 		annotation SummarizationSetBy = Automatic
 
+	measure 'Gap Rupees' = SUM('business vw_head_to_head'[gap_rupees])
+		formatString: +#,##0;-#,##0
+		lineageTag: 8c4a1e6f-3d9b-4c7a-a2e8-6f1b9d3a5c7e
+
 	partition 'business vw_head_to_head' = m
 		mode: import
 		source =

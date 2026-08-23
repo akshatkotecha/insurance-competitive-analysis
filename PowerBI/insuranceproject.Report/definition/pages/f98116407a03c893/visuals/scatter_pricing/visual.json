@@ -1,0 +1,146 @@
+{
+  "name": "scatter_pricing",
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "X": {
+          "projections": [
+            {
+              "queryRef": "business vw_premium.Sum Insured (Scatter)",
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business vw_premium"
+                    }
+                  },
+                  "Property": "Sum Insured (Scatter)"
+                }
+              },
+              "nativeQueryRef": "Sum Insured (Scatter)"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "queryRef": "business vw_premium.Premium Per Lakh (Scatter)",
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business vw_premium"
+                    }
+                  },
+                  "Property": "Premium Per Lakh (Scatter)"
+                }
+              },
+              "nativeQueryRef": "Premium Per Lakh (Scatter)"
+            }
+          ]
+        },
+        "Category": {
+          "projections": [
+            {
+              "queryRef": "business vw_premium.premium_id",
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business vw_premium"
+                    }
+                  },
+                  "Property": "premium_id"
+                }
+              },
+              "nativeQueryRef": "premium_id"
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "queryRef": "business vw_premium.company_name",
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business vw_premium"
+                    }
+                  },
+                  "Property": "company_name"
+                }
+              },
+              "nativeQueryRef": "company_name"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "business vw_premium"
+                  }
+                },
+                "Property": "Sum Insured (Scatter)"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {},
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Premium per lakh vs. sum insured'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "position": {
+    "x": 20,
+    "y": 160,
+    "width": 900,
+    "height": 400,
+    "z": 0,
+    "tabOrder": 0
+  },
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json"
+}
