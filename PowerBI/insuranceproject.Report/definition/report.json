@@ -11,7 +11,7 @@
       "type": "SharedResources"
     },
     "customTheme": {
-      "name": "InsuranceCompetitiveIntelligence—Dark.json",
+      "name": "InsuranceFinancialTerminal—Light.json",
       "reportVersionAtImport": {
         "visual": "2.11.0",
         "report": "3.4.0",
@@ -52,8 +52,8 @@
       "type": "RegisteredResources",
       "items": [
         {
-          "name": "InsuranceCompetitiveIntelligence—Dark.json",
-          "path": "InsuranceCompetitiveIntelligence—Dark.json",
+          "name": "InsuranceFinancialTerminal—Light.json",
+          "path": "InsuranceFinancialTerminal—Light.json",
           "type": "CustomTheme"
         }
       ]
