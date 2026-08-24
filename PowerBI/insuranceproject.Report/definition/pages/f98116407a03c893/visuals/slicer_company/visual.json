@@ -1,5 +1,5 @@
 {
-  "name": "slicer_rival",
+  "name": "slicer_company",
   "visual": {
     "visualType": "slicer",
     "query": {
@@ -7,18 +7,18 @@
         "Values": {
           "projections": [
             {
-              "queryRef": "business vw_head_to_head.rival",
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "business vw_head_to_head"
+                      "Entity": "business vw_premium"
                     }
                   },
-                  "Property": "rival"
+                  "Property": "company_name"
                 }
               },
-              "nativeQueryRef": "rival"
+              "queryRef": "business vw_premium.company_name",
+              "nativeQueryRef": "company_name"
             }
           ]
         }
@@ -54,7 +54,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Rival'"
+                  "Value": "'Company'"
                 }
               }
             }
@@ -77,9 +77,9 @@
     }
   },
   "position": {
-    "x": 20,
-    "y": 500,
-    "width": 220,
+    "x": 940,
+    "y": 200,
+    "width": 300,
     "height": 120,
     "z": 0,
     "tabOrder": 0

@@ -1,49 +1,12 @@
 {
-  "name": "scatter_pricing",
+  "name": "bar_premium_by_age",
   "visual": {
-    "visualType": "scatterChart",
+    "visualType": "clusteredColumnChart",
     "query": {
       "queryState": {
-        "X": {
-          "projections": [
-            {
-              "queryRef": "business vw_premium.Sum Insured (Scatter)",
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "business vw_premium"
-                    }
-                  },
-                  "Property": "Sum Insured (Scatter)"
-                }
-              },
-              "nativeQueryRef": "Sum Insured (Scatter)"
-            }
-          ]
-        },
-        "Y": {
-          "projections": [
-            {
-              "queryRef": "business vw_premium.Premium Per Lakh (Scatter)",
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "business vw_premium"
-                    }
-                  },
-                  "Property": "Premium Per Lakh (Scatter)"
-                }
-              },
-              "nativeQueryRef": "Premium Per Lakh (Scatter)"
-            }
-          ]
-        },
         "Category": {
           "projections": [
             {
-              "queryRef": "business vw_premium.premium_id",
               "field": {
                 "Column": {
                   "Expression": {
@@ -51,17 +14,35 @@
                       "Entity": "business vw_premium"
                     }
                   },
-                  "Property": "premium_id"
+                  "Property": "age"
                 }
               },
-              "nativeQueryRef": "premium_id"
+              "queryRef": "business vw_premium.age",
+              "nativeQueryRef": "age"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business vw_premium"
+                    }
+                  },
+                  "Property": "Selected Premium"
+                }
+              },
+              "queryRef": "business vw_premium.Selected Premium",
+              "nativeQueryRef": "Selected Premium"
             }
           ]
         },
         "Series": {
           "projections": [
             {
-              "queryRef": "business vw_premium.company_name",
               "field": {
                 "Column": {
                   "Expression": {
@@ -72,31 +53,58 @@
                   "Property": "company_name"
                 }
               },
+              "queryRef": "business vw_premium.company_name",
               "nativeQueryRef": "company_name"
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Measure": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "business vw_premium"
-                  }
-                },
-                "Property": "Sum Insured (Scatter)"
-              }
-            },
-            "direction": "Descending"
-          }
-        ],
-        "isDefaultSort": true
       }
     },
-    "objects": {},
+    "objects": {
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#2a78d6'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "business vw_premium"
+                          }
+                        },
+                        "Property": "company_name"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'ABHI'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
     "drillFilterOtherVisuals": true,
     "visualContainerObjects": {
       "title": [
@@ -112,7 +120,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Premium per lakh vs. sum insured'"
+                  "Value": "'Premium by age, per company'"
                 }
               }
             }
@@ -132,7 +140,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Premium per lakh in Rs. Tier 1, 1 adult, 0 children.'"
+                  "Value": "'Set the age range and (optionally) a company below; bars show premium per age, split by insurer.'"
                 }
               }
             },

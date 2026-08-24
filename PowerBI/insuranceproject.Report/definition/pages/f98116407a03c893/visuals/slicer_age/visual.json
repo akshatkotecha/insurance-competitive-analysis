@@ -1,5 +1,5 @@
 {
-  "name": "slicer_age_band",
+  "name": "slicer_age",
   "visual": {
     "visualType": "slicer",
     "query": {
@@ -7,7 +7,6 @@
         "Values": {
           "projections": [
             {
-              "queryRef": "business vw_premium.age_band",
               "field": {
                 "Column": {
                   "Expression": {
@@ -15,10 +14,11 @@
                       "Entity": "business vw_premium"
                     }
                   },
-                  "Property": "age_band"
+                  "Property": "age"
                 }
               },
-              "nativeQueryRef": "age_band"
+              "queryRef": "business vw_premium.age",
+              "nativeQueryRef": "age"
             }
           ]
         }
@@ -31,7 +31,21 @@
             "mode": {
               "expr": {
                 "Literal": {
-                  "Value": "'Dropdown'"
+                  "Value": "'Between'"
+                }
+              }
+            },
+            "numericStart": {
+              "expr": {
+                "Literal": {
+                  "Value": "35D"
+                }
+              }
+            },
+            "numericEnd": {
+              "expr": {
+                "Literal": {
+                  "Value": "40D"
                 }
               }
             }
@@ -54,7 +68,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Age band'"
+                  "Value": "'Age'"
                 }
               }
             }
@@ -80,7 +94,7 @@
     "x": 940,
     "y": 60,
     "width": 300,
-    "height": 60,
+    "height": 120,
     "z": 0,
     "tabOrder": 0
   },

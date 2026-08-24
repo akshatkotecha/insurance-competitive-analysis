@@ -43,7 +43,6 @@
         "Y2": {
           "projections": [
             {
-              "queryRef": "business vw_metrics_long.Metric Value",
               "field": {
                 "Measure": {
                   "Expression": {
@@ -51,10 +50,11 @@
                       "Entity": "business vw_metrics_long"
                     }
                   },
-                  "Property": "Metric Value"
+                  "Property": "Metric Value (Filtered)"
                 }
               },
-              "nativeQueryRef": "Metric Value"
+              "queryRef": "business vw_metrics_long.Metric Value (Filtered)",
+              "nativeQueryRef": "Metric Value (Filtered)"
             }
           ]
         }
@@ -63,16 +63,16 @@
         "sort": [
           {
             "field": {
-              "Measure": {
+              "Column": {
                 "Expression": {
                   "SourceRef": {
                     "Entity": "business vw_metrics_long"
                   }
                 },
-                "Property": "Metric Value"
+                "Property": "financial_year"
               }
             },
-            "direction": "Descending"
+            "direction": "Ascending"
           }
         ],
         "isDefaultSort": true

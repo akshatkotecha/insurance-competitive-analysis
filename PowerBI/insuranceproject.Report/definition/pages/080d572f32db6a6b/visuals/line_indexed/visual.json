@@ -63,16 +63,16 @@
         "sort": [
           {
             "field": {
-              "Measure": {
+              "Column": {
                 "Expression": {
                   "SourceRef": {
                     "Entity": "business vw_metrics_long"
                   }
                 },
-                "Property": "Metric Value Indexed"
+                "Property": "financial_year"
               }
             },
-            "direction": "Descending"
+            "direction": "Ascending"
           }
         ],
         "isDefaultSort": true

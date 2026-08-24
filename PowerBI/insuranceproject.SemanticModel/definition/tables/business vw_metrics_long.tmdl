@@ -40,6 +40,9 @@ table 'business vw_metrics_long'
 		lineageTag: ad96d701-8c71-473c-ad40-24c4df3ce2d4
 		summarizeBy: none
 		sourceColumn: financial_year
+		sortByColumn: fy_number
+
+		changedProperty = SortByColumn
 
 		annotation SummarizationSetBy = Automatic
 
@@ -99,7 +102,11 @@ table 'business vw_metrics_long'
 		formatString: #,##0.00
 		lineageTag: 7d3a9c5e-2f8b-4e6d-a1c7-5b9e3f2d8a6c
 
-	measure 'Metric Value Indexed' = VAR CurrentCompany = SELECTEDVALUE('business vw_metrics_long'[company_name]) VAR CurrentMetric = SELECTEDVALUE('business vw_metrics_long'[metric_name]) VAR FirstYear = CALCULATE(MIN('business vw_metrics_long'[fy_number]), ALLSELECTED('business vw_metrics_long'[financial_year]), 'business vw_metrics_long'[company_name] = CurrentCompany, 'business vw_metrics_long'[metric_name] = CurrentMetric) VAR FirstValue = CALCULATE(SUM('business vw_metrics_long'[metric_value]), 'business vw_metrics_long'[fy_number] = FirstYear, 'business vw_metrics_long'[company_name] = CurrentCompany, 'business vw_metrics_long'[metric_name] = CurrentMetric) VAR CurrentValue = SUM('business vw_metrics_long'[metric_value]) RETURN DIVIDE(CurrentValue, FirstValue) * 100
+	measure 'Metric Value (Filtered)' = VAR CurrentMetric = IF(HASONEVALUE('business vw_metrics_long'[metric_name]), SELECTEDVALUE('business vw_metrics_long'[metric_name]), "GWP") RETURN CALCULATE(SUM('business vw_metrics_long'[metric_value]), 'business vw_metrics_long'[metric_name] = CurrentMetric)
+		formatString: #,##0.00
+		lineageTag: 1c4e6a8b-3d7f-4a9c-b2e5-8f6a3c1d9e7b
+
+	measure 'Metric Value Indexed' = VAR CurrentCompany = SELECTEDVALUE('business vw_metrics_long'[company_name]) VAR CurrentMetric = IF(HASONEVALUE('business vw_metrics_long'[metric_name]), SELECTEDVALUE('business vw_metrics_long'[metric_name]), "GWP") VAR FirstYear = CALCULATE(MIN('business vw_metrics_long'[fy_number]), ALLSELECTED('business vw_metrics_long'[financial_year]), 'business vw_metrics_long'[company_name] = CurrentCompany, 'business vw_metrics_long'[metric_name] = CurrentMetric) VAR FirstValue = CALCULATE(SUM('business vw_metrics_long'[metric_value]), 'business vw_metrics_long'[fy_number] = FirstYear, 'business vw_metrics_long'[company_name] = CurrentCompany, 'business vw_metrics_long'[metric_name] = CurrentMetric) VAR CurrentValue = CALCULATE(SUM('business vw_metrics_long'[metric_value]), 'business vw_metrics_long'[metric_name] = CurrentMetric) RETURN DIVIDE(CurrentValue, FirstValue) * 100
 		formatString: #,##0.0
 		lineageTag: 9f1b6d4a-8c2e-4f7a-b3d5-6e8c1a9f4b2d
 
