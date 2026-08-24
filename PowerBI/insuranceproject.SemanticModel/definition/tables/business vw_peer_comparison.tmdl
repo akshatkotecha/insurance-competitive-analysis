@@ -28,106 +28,97 @@ table 'business vw_peer_comparison'
 
 	column gwp
 		dataType: double
+		formatString: #,##0
 		lineageTag: 7643c717-bc4f-433a-bbab-55d3a1495d08
 		summarizeBy: sum
 		sourceColumn: gwp
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	column gdpi
 		dataType: double
+		formatString: #,##0
 		lineageTag: 9a57e134-4910-4672-bc07-d26664788a2d
 		summarizeBy: sum
 		sourceColumn: gdpi
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	column net_worth
 		dataType: double
+		formatString: #,##0
 		lineageTag: beae7e7b-c059-4c04-96c7-addc73733cd2
 		summarizeBy: sum
 		sourceColumn: net_worth
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	column aum
 		dataType: double
+		formatString: #,##0
 		lineageTag: c71b677d-83b3-4a73-bd25-bb79ceb3ecbb
 		summarizeBy: sum
 		sourceColumn: aum
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	column market_share
 		dataType: double
+		formatString: 0.0
 		lineageTag: 7f1ae1e0-76f3-4b37-81ea-db79980270e3
 		summarizeBy: sum
 		sourceColumn: market_share
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	column roe
 		dataType: double
+		formatString: 0.0
 		lineageTag: c812e366-1376-400c-b292-fa8bbbabc20c
 		summarizeBy: sum
 		sourceColumn: roe
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	column roa
 		dataType: double
+		formatString: 0.0
 		lineageTag: 14df0f07-9616-4ecc-a419-ce33bda5224a
 		summarizeBy: sum
 		sourceColumn: roa
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	column solvency_ratio
 		dataType: double
+		formatString: 0.0
 		lineageTag: 07883c1e-1746-4637-9ea5-081e7dbe5128
 		summarizeBy: sum
 		sourceColumn: solvency_ratio
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	column combined_ratio
 		dataType: double
+		formatString: 0.0
 		lineageTag: 0edadf7f-06d5-425b-8994-ed0f42a86ba9
 		summarizeBy: sum
 		sourceColumn: combined_ratio
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	column icr
 		dataType: double
+		formatString: 0.0
 		lineageTag: 4012f519-81dc-4903-b346-780793ed3aa4
 		summarizeBy: sum
 		sourceColumn: icr
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	column gwp_to_net_worth
 		dataType: double
+		formatString: 0.0
 		lineageTag: 86ae90b2-3f00-4e84-bf6b-512c7b09aada
 		summarizeBy: sum
 		sourceColumn: gwp_to_net_worth

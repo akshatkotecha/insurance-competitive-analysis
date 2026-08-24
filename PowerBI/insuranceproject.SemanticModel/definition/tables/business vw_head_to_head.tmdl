@@ -87,6 +87,7 @@ table 'business vw_head_to_head'
 
 	column index_vs_rival
 		dataType: double
+		formatString: 0.0
 		lineageTag: b3bb9d1e-05a0-4a41-b761-4e4b58158659
 		summarizeBy: sum
 		sourceColumn: index_vs_rival

@@ -1,8 +1,0 @@
-{
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
-  "name": "4087a2cb1da18a12",
-  "displayName": "Product features",
-  "width": 1280,
-  "height": 720,
-  "displayOption": "FitToPage"
-}

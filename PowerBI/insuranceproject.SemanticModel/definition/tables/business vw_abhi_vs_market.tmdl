@@ -98,6 +98,7 @@ table 'business vw_abhi_vs_market'
 
 	column price_index
 		dataType: double
+		formatString: 0.0
 		lineageTag: 39a069ba-9257-4f70-bb30-88603f4079ed
 		summarizeBy: sum
 		sourceColumn: price_index
