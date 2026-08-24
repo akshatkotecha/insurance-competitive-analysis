@@ -1,0 +1,300 @@
+{
+  "name": "table_h2h",
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "queryRef": "business vw_head_to_head.age_band",
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business vw_head_to_head"
+                    }
+                  },
+                  "Property": "age_band"
+                }
+              },
+              "nativeQueryRef": "age_band"
+            },
+            {
+              "queryRef": "business vw_head_to_head.si_label",
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business vw_head_to_head"
+                    }
+                  },
+                  "Property": "si_label"
+                }
+              },
+              "nativeQueryRef": "si_label"
+            },
+            {
+              "queryRef": "business vw_head_to_head.abhi_premium",
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business vw_head_to_head"
+                    }
+                  },
+                  "Property": "abhi_premium"
+                }
+              },
+              "nativeQueryRef": "abhi_premium"
+            },
+            {
+              "queryRef": "business vw_head_to_head.rival_premium",
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business vw_head_to_head"
+                    }
+                  },
+                  "Property": "rival_premium"
+                }
+              },
+              "nativeQueryRef": "rival_premium"
+            },
+            {
+              "queryRef": "business vw_head_to_head.Gap Rupees",
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business vw_head_to_head"
+                    }
+                  },
+                  "Property": "Gap Rupees"
+                }
+              },
+              "nativeQueryRef": "Gap Rupees"
+            },
+            {
+              "queryRef": "business vw_head_to_head.index_vs_rival",
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business vw_head_to_head"
+                    }
+                  },
+                  "Property": "index_vs_rival"
+                }
+              },
+              "nativeQueryRef": "index_vs_rival"
+            },
+            {
+              "queryRef": "business vw_head_to_head.winner",
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business vw_head_to_head"
+                    }
+                  },
+                  "Property": "winner"
+                }
+              },
+              "nativeQueryRef": "winner"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "business vw_head_to_head"
+                  }
+                },
+                "Property": "Gap Rupees"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {}
+        },
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Conditional": {
+                      "Cases": [
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 3,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "business vw_head_to_head"
+                                    }
+                                  },
+                                  "Property": "Gap Rupees"
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "0.0D"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'good'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 2,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "business vw_head_to_head"
+                                    }
+                                  },
+                                  "Property": "Gap Rupees"
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "0.0D"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'bad'"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "business vw_head_to_head.Gap Rupees"
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Head-to-head'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Gap Rs = ABHI premium minus rival premium. Green = ABHI cheaper. Tier 1, individual cover.'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#898781'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "position": {
+    "x": 260,
+    "y": 500,
+    "width": 1000,
+    "height": 200,
+    "z": 0,
+    "tabOrder": 0
+  },
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json"
+}
