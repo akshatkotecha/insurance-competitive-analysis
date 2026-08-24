@@ -323,6 +323,19 @@
             "metadata": "business vw_policy_terms.Ambulance Cover Label"
           }
         }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true,
