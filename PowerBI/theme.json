@@ -94,6 +94,11 @@
         "rowHeaders": [{ "fontColor": "#0b0b0b", "fontSize": 9 }],
         "values": [{ "fontSize": 9 }]
       }
+    },
+    "lineClusteredColumnComboChart": {
+      "*": {
+        "lineStyles": [{ "strokeWidth": 1.5 }]
+      }
     }
   }
 }
