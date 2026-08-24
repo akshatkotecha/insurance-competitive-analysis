@@ -1,6 +1,6 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
-  "name": "80a1d20f70e6a926",
+  "name": "aa174b4fa9af3e69",
   "position": {
     "x": 20,
     "y": 20,
@@ -18,7 +18,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Peer comparison",
+                    "value": "Product features",
                     "textStyle": {
                       "fontSize": "24pt"
                     }

@@ -1,6 +1,6 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
-  "name": "cbc8f1194bcfa375",
+  "name": "9fa6b4323fa09303",
   "position": {
     "x": 20,
     "y": 20,
@@ -18,7 +18,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Pricing detail",
+                    "value": "Executive summary",
                     "textStyle": {
                       "fontSize": "24pt"
                     }
