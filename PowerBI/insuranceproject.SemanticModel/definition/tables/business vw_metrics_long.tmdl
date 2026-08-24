@@ -110,6 +110,14 @@ table 'business vw_metrics_long'
 		formatString: #,##0.0
 		lineageTag: 9f1b6d4a-8c2e-4f7a-b3d5-6e8c1a9f4b2d
 
+	measure 'Latest FY Value' = VAR CurrentMetric = IF(HASONEVALUE('business vw_metrics_long'[metric_name]), SELECTEDVALUE('business vw_metrics_long'[metric_name]), "GWP") VAR LatestFY = CALCULATE(MAX('business vw_metrics_long'[fy_number]), ALLSELECTED('business vw_metrics_long'[financial_year]), 'business vw_metrics_long'[metric_name] = CurrentMetric) RETURN CALCULATE(SUM('business vw_metrics_long'[metric_value]), 'business vw_metrics_long'[fy_number] = LatestFY, 'business vw_metrics_long'[metric_name] = CurrentMetric)
+		formatString: #,##0.00
+		lineageTag: 2d5f8a1c-6b3e-4d9a-8c2f-5e7b1a3d9c6f
+
+	measure 'YoY Change %' = VAR CurrentMetric = IF(HASONEVALUE('business vw_metrics_long'[metric_name]), SELECTEDVALUE('business vw_metrics_long'[metric_name]), "GWP") VAR LatestFY = CALCULATE(MAX('business vw_metrics_long'[fy_number]), ALLSELECTED('business vw_metrics_long'[financial_year]), 'business vw_metrics_long'[metric_name] = CurrentMetric) VAR PriorFY = LatestFY - 1 VAR LatestVal = CALCULATE(SUM('business vw_metrics_long'[metric_value]), 'business vw_metrics_long'[fy_number] = LatestFY, 'business vw_metrics_long'[metric_name] = CurrentMetric) VAR PriorVal = CALCULATE(SUM('business vw_metrics_long'[metric_value]), 'business vw_metrics_long'[fy_number] = PriorFY, 'business vw_metrics_long'[metric_name] = CurrentMetric) RETURN DIVIDE(LatestVal - PriorVal, PriorVal)
+		formatString: +0.0%;-0.0%
+		lineageTag: 7a4c9e2d-1f6b-4a8c-9e3d-6b2f5a8c1e4d
+
 	partition 'business vw_metrics_long' = m
 		mode: import
 		source =

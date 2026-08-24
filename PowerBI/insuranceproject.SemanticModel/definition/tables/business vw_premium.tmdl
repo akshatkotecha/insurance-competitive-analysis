@@ -214,6 +214,14 @@ table 'business vw_premium'
 		formatString: #,##0
 		lineageTag: 0b6142b5-fa35-4ec7-bb3c-f7d5a0e2c36f
 
+	measure 'Avg Selected Premium' = AVERAGE('business vw_premium'[premium_amount])
+		formatString: #,##0
+		lineageTag: 8b3e6a1d-4c9f-4e7a-b2d5-1f8c6a3e9d7b
+
+	measure 'Avg Premium Per Lakh' = AVERAGE('business vw_premium'[premium_per_lakh])
+		formatString: #,##0
+		lineageTag: 5c1d9a3f-8e6b-4c2a-b7d4-3e9f1a6c5d8b
+
 	partition 'business vw_premium' = m
 		mode: import
 		source =

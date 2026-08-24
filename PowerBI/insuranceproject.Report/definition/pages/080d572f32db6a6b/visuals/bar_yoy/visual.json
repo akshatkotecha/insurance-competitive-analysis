@@ -1,31 +1,12 @@
 {
-  "name": "line_indexed",
+  "name": "bar_yoy",
   "visual": {
-    "visualType": "lineClusteredColumnComboChart",
+    "visualType": "clusteredColumnChart",
     "query": {
       "queryState": {
         "Category": {
           "projections": [
             {
-              "queryRef": "business vw_metrics_long.financial_year",
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "business vw_metrics_long"
-                    }
-                  },
-                  "Property": "financial_year"
-                }
-              },
-              "nativeQueryRef": "financial_year"
-            }
-          ]
-        },
-        "Series": {
-          "projections": [
-            {
-              "queryRef": "business vw_metrics_long.company_name",
               "field": {
                 "Column": {
                   "Expression": {
@@ -36,14 +17,14 @@
                   "Property": "company_name"
                 }
               },
+              "queryRef": "business vw_metrics_long.company_name",
               "nativeQueryRef": "company_name"
             }
           ]
         },
-        "Y2": {
+        "Y": {
           "projections": [
             {
-              "queryRef": "business vw_metrics_long.Metric Value Indexed",
               "field": {
                 "Measure": {
                   "Expression": {
@@ -51,73 +32,17 @@
                       "Entity": "business vw_metrics_long"
                     }
                   },
-                  "Property": "Metric Value Indexed"
+                  "Property": "YoY Change %"
                 }
               },
-              "nativeQueryRef": "Metric Value Indexed"
+              "queryRef": "business vw_metrics_long.YoY Change %",
+              "nativeQueryRef": "YoY Change %"
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "business vw_metrics_long"
-                  }
-                },
-                "Property": "financial_year"
-              }
-            },
-            "direction": "Ascending"
-          }
-        ],
-        "isDefaultSort": true
       }
     },
     "objects": {
-      "lineStyles": [
-        {
-          "properties": {
-            "strokeWidth": {
-              "expr": {
-                "Literal": {
-                  "Value": "5D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "business vw_metrics_long"
-                          }
-                        },
-                        "Property": "company_name"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'ABHI'"
-                      }
-                    }
-                  }
-                }
-              }
-            ]
-          }
-        }
-      ],
       "dataPoint": [
         {
           "properties": {
@@ -177,7 +102,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Indexed to first year (=100)'"
+                  "Value": "'YoY change, latest year'"
                 }
               }
             }
@@ -190,7 +115,32 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Percent change vs. prior year for the selected metric.'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#898781'"
+                    }
+                  }
                 }
               }
             }
@@ -200,10 +150,10 @@
     }
   },
   "position": {
-    "x": 640,
-    "y": 200,
-    "width": 600,
-    "height": 480,
+    "x": 20,
+    "y": 700,
+    "width": 1220,
+    "height": 220,
     "z": 0,
     "tabOrder": 0
   },

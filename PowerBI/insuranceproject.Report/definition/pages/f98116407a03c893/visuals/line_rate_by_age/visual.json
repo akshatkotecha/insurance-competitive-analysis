@@ -1,5 +1,5 @@
 {
-  "name": "line_indexed",
+  "name": "line_rate_by_age",
   "visual": {
     "visualType": "lineClusteredColumnComboChart",
     "query": {
@@ -7,35 +7,35 @@
         "Category": {
           "projections": [
             {
-              "queryRef": "business vw_metrics_long.financial_year",
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "business vw_metrics_long"
+                      "Entity": "business vw_premium"
                     }
                   },
-                  "Property": "financial_year"
+                  "Property": "age"
                 }
               },
-              "nativeQueryRef": "financial_year"
+              "queryRef": "business vw_premium.age",
+              "nativeQueryRef": "age"
             }
           ]
         },
         "Series": {
           "projections": [
             {
-              "queryRef": "business vw_metrics_long.company_name",
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "business vw_metrics_long"
+                      "Entity": "business vw_premium"
                     }
                   },
                   "Property": "company_name"
                 }
               },
+              "queryRef": "business vw_premium.company_name",
               "nativeQueryRef": "company_name"
             }
           ]
@@ -43,81 +43,24 @@
         "Y2": {
           "projections": [
             {
-              "queryRef": "business vw_metrics_long.Metric Value Indexed",
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "business vw_metrics_long"
+                      "Entity": "business vw_premium"
                     }
                   },
-                  "Property": "Metric Value Indexed"
+                  "Property": "Avg Premium Per Lakh"
                 }
               },
-              "nativeQueryRef": "Metric Value Indexed"
+              "queryRef": "business vw_premium.Avg Premium Per Lakh",
+              "nativeQueryRef": "Avg Premium Per Lakh"
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "business vw_metrics_long"
-                  }
-                },
-                "Property": "financial_year"
-              }
-            },
-            "direction": "Ascending"
-          }
-        ],
-        "isDefaultSort": true
       }
     },
     "objects": {
-      "lineStyles": [
-        {
-          "properties": {
-            "strokeWidth": {
-              "expr": {
-                "Literal": {
-                  "Value": "5D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "business vw_metrics_long"
-                          }
-                        },
-                        "Property": "company_name"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'ABHI'"
-                      }
-                    }
-                  }
-                }
-              }
-            ]
-          }
-        }
-      ],
       "dataPoint": [
         {
           "properties": {
@@ -143,7 +86,46 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "business vw_metrics_long"
+                            "Entity": "business vw_premium"
+                          }
+                        },
+                        "Property": "company_name"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'ABHI'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "lineStyles": [
+        {
+          "properties": {
+            "strokeWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "business vw_premium"
                           }
                         },
                         "Property": "company_name"
@@ -177,7 +159,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Indexed to first year (=100)'"
+                  "Value": "'Premium per lakh by age (normalized rate)'"
                 }
               }
             }
@@ -190,7 +172,32 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Premium per lakh of cover, so cheaper/dearer reads true across cover amounts.'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#898781'"
+                    }
+                  }
                 }
               }
             }
@@ -200,10 +207,10 @@
     }
   },
   "position": {
-    "x": 640,
-    "y": 200,
-    "width": 600,
-    "height": 480,
+    "x": 20,
+    "y": 720,
+    "width": 1240,
+    "height": 200,
     "z": 0,
     "tabOrder": 0
   },
