@@ -131,6 +131,9 @@ table 'business vw_abhi_vs_market'
 
 		annotation SummarizationSetBy = Automatic
 
+	measure 'Last Refreshed' = "Last refreshed " & FORMAT(NOW(), "dd mmm yyyy hh:mm")
+		lineageTag: 4b6d8f1a-3c5e-4a7b-9d2f-6e8b1a4c7d9f
+
 	measure 'Avg Price Index (Reliable)' = CALCULATE(AVERAGE('business vw_abhi_vs_market'[price_index]), 'business vw_abhi_vs_market'[competitor_count] >= 4)
 		formatString: 0.0
 		lineageTag: efce368b-843a-472e-8a1b-7be422ecf9f5
