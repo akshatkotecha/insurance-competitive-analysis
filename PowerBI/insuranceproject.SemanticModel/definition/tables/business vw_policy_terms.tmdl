@@ -115,6 +115,34 @@ table 'business vw_policy_terms'
 	measure 'Is Focal Row Color (Policy Terms)' = IF(SELECTEDVALUE('business vw_policy_terms'[is_focal]) = 1, "#e8edf5", "#ffffff")
 		lineageTag: 5a7c9e1f-3d6b-4a8c-be2d-6f9c3a5e7b1d
 
+	column 'Waiting Period Label' = IF(ISBLANK('business vw_policy_terms'[waiting_period]), "not disclosed", 'business vw_policy_terms'[waiting_period])
+		dataType: string
+		lineageTag: 6c9e2a4d-1f7b-4c8a-9e3d-5b6f2a9c4e7d
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pre-Hosp Label' = IF(ISBLANK('business vw_policy_terms'[pre_hospitalization]), "not disclosed", FORMAT('business vw_policy_terms'[pre_hospitalization], "0") & " days")
+		dataType: string
+		lineageTag: 3d8f1c5a-6b9e-4a2d-8f4c-7a1e5b9d3f6c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Post-Hosp Label' = IF(ISBLANK('business vw_policy_terms'[post_hospitalization]), "not disclosed", FORMAT('business vw_policy_terms'[post_hospitalization], "0") & " days")
+		dataType: string
+		lineageTag: 8a4c6e9f-2d1b-4f7a-9c3e-6d8b1a4f7c9e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ambulance Cover Label' = IF(ISBLANK('business vw_policy_terms'[ambulance_cover]), "not disclosed", "Rs " & FORMAT('business vw_policy_terms'[ambulance_cover], "#,##0"))
+		dataType: string
+		lineageTag: 1f6b9d3a-4c8e-4a5f-b2d7-9e3c6a1f4d8b
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
 	partition 'business vw_policy_terms' = m
 		mode: import
 		source =

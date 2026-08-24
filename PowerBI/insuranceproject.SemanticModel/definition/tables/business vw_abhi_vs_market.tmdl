@@ -167,6 +167,9 @@ table 'business vw_abhi_vs_market'
 		formatString: 0
 		lineageTag: 049f1286-4b2f-4982-b680-8eacd7d6a2d8
 
+	measure 'ABHI Cheapest Label' = SUM('business vw_abhi_vs_market'[is_cheapest]) & " of " & COUNTROWS('business vw_abhi_vs_market')
+		lineageTag: 3f9a7c1e-6b4d-4a8f-9c2e-5d7b1a3f9e6c
+
 	measure 'Avg Premium Gap' = AVERAGE('business vw_abhi_vs_market'[gap_rupees])
 		formatString: #,##0
 		lineageTag: c5052fdc-dd08-4f6e-ba9c-246a766e4b17

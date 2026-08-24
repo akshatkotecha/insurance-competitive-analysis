@@ -137,6 +137,9 @@ table 'business vw_abhi_scorecard'
 		formatString: 0
 		lineageTag: 7b9d1f3a-4e6c-4b8d-a1f7-9c3e5b7d1f4a
 
+	measure 'ABHI GWP Rank Label' = CALCULATE(SUM('business vw_abhi_scorecard'[rank_position]), 'business vw_abhi_scorecard'[metric_name] = "GWP", 'business vw_abhi_scorecard'[financial_year] = "FY25") & " of " & CALCULATE(SUM('business vw_abhi_scorecard'[peer_count]), 'business vw_abhi_scorecard'[metric_name] = "GWP", 'business vw_abhi_scorecard'[financial_year] = "FY25")
+		lineageTag: 9e2c5a8d-3f7b-4c1e-8a6d-2f9c5b7e3a1d
+
 	partition 'business vw_abhi_scorecard' = m
 		mode: import
 		source =
