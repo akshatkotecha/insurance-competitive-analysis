@@ -28,11 +28,12 @@ table 'business vw_head_to_head'
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Age Band Sort' = SWITCH('business vw_head_to_head'[age_band], "18-25", 1, "26-35", 2, "36-45", 3, "46-55", 4, "56-65", 5, "66+", 6, 99)
+	column 'Age Band Sort'
 		dataType: int64
 		formatString: 0
 		lineageTag: 3d5f7a9c-2e4b-4d8a-a3f6-7b9c1e5a3d7c
 		summarizeBy: none
+		sourceColumn: Age Band Sort
 
 		annotation SummarizationSetBy = Automatic
 
@@ -111,9 +112,17 @@ table 'business vw_head_to_head'
 		source =
 				let
 				    Source = Sql.Database("AKSHAT\SQLEXPRESS", "INSURANCEDB"),
-				    business_vw_head_to_head = Source{[Schema="business",Item="vw_head_to_head"]}[Data]
+				    business_vw_head_to_head = Source{[Schema="business",Item="vw_head_to_head"]}[Data],
+				    #"Added Age Band Sort" = Table.AddColumn(business_vw_head_to_head, "Age Band Sort", each
+				        if [age_band] = "18-25" then 1
+				        else if [age_band] = "26-35" then 2
+				        else if [age_band] = "36-45" then 3
+				        else if [age_band] = "46-55" then 4
+				        else if [age_band] = "56-65" then 5
+				        else if [age_band] = "66+" then 6
+				        else 99, Int64.Type)
 				in
-				    business_vw_head_to_head
+				    #"Added Age Band Sort"
 
 	annotation PBI_ResultType = Table
 
