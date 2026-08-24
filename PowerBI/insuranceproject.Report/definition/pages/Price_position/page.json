@@ -4,5 +4,12 @@
   "displayName": "Price position",
   "displayOption": "FitToPage",
   "height": 720,
-  "width": 1280
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "slicer_slab",
+      "target": "matrix_heatmap",
+      "type": "NoFilter"
+    }
+  ]
 }
