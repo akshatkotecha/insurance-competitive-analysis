@@ -1,0 +1,110 @@
+{
+  "name": "bar_market_share",
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business vw_peer_comparison"
+                    }
+                  },
+                  "Property": "company_name"
+                }
+              },
+              "queryRef": "business vw_peer_comparison.company_name",
+              "nativeQueryRef": "company_name"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business vw_peer_comparison"
+                    }
+                  },
+                  "Property": "Market Share"
+                }
+              },
+              "queryRef": "business vw_peer_comparison.Market Share",
+              "nativeQueryRef": "Market Share"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business vw_peer_comparison"
+                    }
+                  },
+                  "Property": "Market Share Label"
+                }
+              },
+              "queryRef": "business vw_peer_comparison.Market Share Label",
+              "nativeQueryRef": "Market Share Label"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {},
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Market share (%)'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "position": {
+    "x": 16,
+    "y": 392,
+    "width": 408,
+    "height": 280,
+    "z": 0,
+    "tabOrder": 0
+  },
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json"
+}
