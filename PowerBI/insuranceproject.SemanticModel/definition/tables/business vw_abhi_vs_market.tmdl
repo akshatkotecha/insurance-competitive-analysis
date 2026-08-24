@@ -181,7 +181,7 @@ table 'business vw_abhi_vs_market'
 	measure 'Price Index Label' = VAR v = AVERAGE('business vw_abhi_vs_market'[price_index]) VAR n = AVERAGE('business vw_abhi_vs_market'[competitor_count]) RETURN IF(ISBLANK(v), BLANK(), FORMAT(v, "0") & IF(n < 4, " (n=" & FORMAT(n, "0") & ")", ""))
 		lineageTag: face35a6-59b8-4b9b-8108-e18e12482a89
 
-	measure 'Price Index Cell Color' = VAR v = AVERAGE('business vw_abhi_vs_market'[price_index]) VAR n = AVERAGE('business vw_abhi_vs_market'[competitor_count]) RETURN SWITCH(TRUE(), ISBLANK(v), "#f2f2f2", n < 4, "#8a8a8a", v < 90, "#0ca30c", v <= 105, "#8a8a8a", "#d03b3b")
+	measure 'Price Index Cell Color' = VAR v = AVERAGE('business vw_abhi_vs_market'[price_index]) VAR n = AVERAGE('business vw_abhi_vs_market'[competitor_count]) RETURN SWITCH(TRUE(), ISBLANK(v), "#f2f2f2", n < 4, "#E7E6E6", v < 90, "#C6E0B4", v <= 105, "#E7E6E6", "#F4B8B8")
 		lineageTag: b587dbf3-b2fb-4d79-a2dc-5ffa00c109b7
 
 	measure 'Modal Position (Reliable)' = VAR PositionCounts = ADDCOLUMNS(VALUES('business vw_abhi_vs_market'[position]), "Cnt", CALCULATE(COUNTROWS('business vw_abhi_vs_market'), 'business vw_abhi_vs_market'[competitor_count] >= 4)) VAR TopRow = TOPN(1, PositionCounts, [Cnt], DESC) RETURN MAXX(TopRow, 'business vw_abhi_vs_market'[position])

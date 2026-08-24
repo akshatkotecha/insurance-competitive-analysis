@@ -1,0 +1,146 @@
+{
+  "name": "heatmap",
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business vw_abhi_vs_market"
+                    }
+                  },
+                  "Property": "age_band"
+                }
+              },
+              "queryRef": "business vw_abhi_vs_market.age_band",
+              "nativeQueryRef": "age_band"
+            }
+          ]
+        },
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business vw_abhi_vs_market"
+                    }
+                  },
+                  "Property": "si_label"
+                }
+              },
+              "queryRef": "business vw_abhi_vs_market.si_label",
+              "nativeQueryRef": "si_label"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business vw_abhi_vs_market"
+                    }
+                  },
+                  "Property": "Price Index Label"
+                }
+              },
+              "queryRef": "business vw_abhi_vs_market.Price Index Label",
+              "nativeQueryRef": "Price Index Label"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {}
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "business vw_abhi_vs_market"
+                        }
+                      },
+                      "Property": "Price Index Cell Color"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "business vw_abhi_vs_market.Price Index Label"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Price index by age band x cover'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "position": {
+    "x": 16,
+    "y": 52,
+    "width": 880,
+    "height": 400,
+    "z": 0,
+    "tabOrder": 0
+  },
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json"
+}
