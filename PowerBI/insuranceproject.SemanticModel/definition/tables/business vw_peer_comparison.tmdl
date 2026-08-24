@@ -153,12 +153,20 @@ table 'business vw_peer_comparison'
 
 		annotation SummarizationSetBy = Automatic
 
-	measure 'Is Focal Row Color' = IF(SELECTEDVALUE('business vw_peer_comparison'[is_focal]) = 1, "#264a73", "#1a1a19")
+	measure 'Is Focal Row Color' = IF(SELECTEDVALUE('business vw_peer_comparison'[is_focal]) = 1, "#e8edf5", "#ffffff")
 		lineageTag: ebfcef16-2150-4012-aadd-5edb4688eabd
 
 	measure 'Market Share' = SUM('business vw_peer_comparison'[market_share])
 		formatString: 0.0
 		lineageTag: 4d8e2a6c-1b9f-4c3d-a7e5-9f2b6d4a8c1e
+
+	measure 'ROE' = SUM('business vw_peer_comparison'[roe])
+		formatString: 0.00
+		lineageTag: 8f1a3c5e-6d9b-4a2c-8e4f-1b6d9a3c5e8f
+
+	measure 'Solvency Ratio' = SUM('business vw_peer_comparison'[solvency_ratio])
+		formatString: 0.00
+		lineageTag: 3c5e7a9d-2f4b-4e6c-a8d1-5b7f9c2e4a6d
 
 	partition 'business vw_peer_comparison' = m
 		mode: import

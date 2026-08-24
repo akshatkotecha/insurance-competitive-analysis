@@ -54,6 +54,14 @@ table 'business vw_feature_gaps'
 
 		annotation SummarizationSetBy = Automatic
 
+	measure 'Rival Adoption Pct' = SUM('business vw_feature_gaps'[rival_adoption_pct])
+		formatString: 0.0
+		lineageTag: 1c3e5a7d-9f2b-4e6a-8c4d-3b5f7a9c1e6d
+
+	measure 'Feature Gap Count' = CALCULATE(COUNTROWS('business vw_feature_gaps'), 'business vw_feature_gaps'[gap_status] <> "Parity")
+		formatString: 0
+		lineageTag: 6d8f1a3c-5e7b-4d9a-b2f6-8c1e4a6d9f3b
+
 	partition 'business vw_feature_gaps' = m
 		mode: import
 		source =

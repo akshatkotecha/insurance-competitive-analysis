@@ -112,6 +112,9 @@ table 'business vw_policy_terms'
 
 		annotation SummarizationSetBy = Automatic
 
+	measure 'Is Focal Row Color' = IF(SELECTEDVALUE('business vw_policy_terms'[is_focal]) = 1, "#e8edf5", "#ffffff")
+		lineageTag: 5a7c9e1f-3d6b-4a8c-be2d-6f9c3a5e7b1d
+
 	partition 'business vw_policy_terms' = m
 		mode: import
 		source =

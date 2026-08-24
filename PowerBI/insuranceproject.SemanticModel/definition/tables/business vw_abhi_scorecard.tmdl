@@ -129,6 +129,14 @@ table 'business vw_abhi_scorecard'
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	measure 'ABHI GWP FY25' = CALCULATE(SUM('business vw_abhi_scorecard'[abhi_value]), 'business vw_abhi_scorecard'[metric_name] = "GWP", 'business vw_abhi_scorecard'[financial_year] = "FY25")
+		formatString: #,##0.00
+		lineageTag: 4a6c8e1b-2d5f-4a9c-8e3b-6f1d9a2c5e8b
+
+	measure 'ABHI GWP Rank' = CALCULATE(SUM('business vw_abhi_scorecard'[rank_position]), 'business vw_abhi_scorecard'[metric_name] = "GWP", 'business vw_abhi_scorecard'[financial_year] = "FY25")
+		formatString: 0
+		lineageTag: 7b9d1f3a-4e6c-4b8d-a1f7-9c3e5b7d1f4a
+
 	partition 'business vw_abhi_scorecard' = m
 		mode: import
 		source =

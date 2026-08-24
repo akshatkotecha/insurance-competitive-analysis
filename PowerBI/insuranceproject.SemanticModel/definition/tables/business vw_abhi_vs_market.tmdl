@@ -6,6 +6,17 @@ table 'business vw_abhi_vs_market'
 		lineageTag: 06cf2972-c934-439e-866f-c28f1ea15254
 		summarizeBy: none
 		sourceColumn: age_band
+		sortByColumn: 'Age Band Sort'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Age Band Sort' = SWITCH('business vw_abhi_vs_market'[age_band], "18-25", 1, "26-35", 2, "36-45", 3, "46-55", 4, "56-65", 5, "66+", 6, 99)
+		dataType: int64
+		formatString: 0
+		lineageTag: 1a3c5e7f-9b2d-4f6a-8c1e-3d5b7f9a2c4e
+		summarizeBy: none
 
 		annotation SummarizationSetBy = Automatic
 
@@ -120,7 +131,7 @@ table 'business vw_abhi_vs_market'
 
 		annotation SummarizationSetBy = Automatic
 
-	measure 'Avg Price Index (Reliable)' = CALCULATE(AVERAGE('business vw_abhi_vs_market'[price_index]), 'business vw_abhi_vs_market'[competitor_count] >= 5)
+	measure 'Avg Price Index (Reliable)' = CALCULATE(AVERAGE('business vw_abhi_vs_market'[price_index]), 'business vw_abhi_vs_market'[competitor_count] >= 4)
 		formatString: 0.0
 		lineageTag: efce368b-843a-472e-8a1b-7be422ecf9f5
 
@@ -128,7 +139,7 @@ table 'business vw_abhi_vs_market'
 		formatString: 0.0
 		lineageTag: b9586952-54e8-4f20-b5cf-92fe18a16c4e
 
-	measure 'Reliable Segment Count' = CALCULATE(COUNTROWS('business vw_abhi_vs_market'), 'business vw_abhi_vs_market'[competitor_count] >= 5)
+	measure 'Reliable Segment Count' = CALCULATE(COUNTROWS('business vw_abhi_vs_market'), 'business vw_abhi_vs_market'[competitor_count] >= 4)
 		formatString: 0
 		lineageTag: d9a7ad67-929e-4bf4-9f54-6c88bf12183a
 
@@ -136,15 +147,15 @@ table 'business vw_abhi_vs_market'
 		formatString: 0
 		lineageTag: 89b235b1-adf2-4510-917b-4671c3f863b3
 
-	measure 'Segments Below Market % (Reliable)' = DIVIDE(CALCULATE(COUNTROWS('business vw_abhi_vs_market'), 'business vw_abhi_vs_market'[price_index] < 90, 'business vw_abhi_vs_market'[competitor_count] >= 5), [Reliable Segment Count])
+	measure 'Segments Below Market % (Reliable)' = DIVIDE(CALCULATE(COUNTROWS('business vw_abhi_vs_market'), 'business vw_abhi_vs_market'[price_index] < 90, 'business vw_abhi_vs_market'[competitor_count] >= 4), [Reliable Segment Count])
 		formatString: 0%
 		lineageTag: 8af33a62-d850-400c-bc16-eaee159e776d
 
-	measure 'Segments Above Market % (Reliable)' = DIVIDE(CALCULATE(COUNTROWS('business vw_abhi_vs_market'), 'business vw_abhi_vs_market'[price_index] > 105, 'business vw_abhi_vs_market'[competitor_count] >= 5), [Reliable Segment Count])
+	measure 'Segments Above Market % (Reliable)' = DIVIDE(CALCULATE(COUNTROWS('business vw_abhi_vs_market'), 'business vw_abhi_vs_market'[price_index] > 105, 'business vw_abhi_vs_market'[competitor_count] >= 4), [Reliable Segment Count])
 		formatString: 0%
 		lineageTag: 7b270493-db13-4b2c-9682-cb2675d2d370
 
-	measure 'Cheapest Segments (Reliable)' = CALCULATE(SUM('business vw_abhi_vs_market'[is_cheapest]), 'business vw_abhi_vs_market'[competitor_count] >= 5)
+	measure 'Cheapest Segments (Reliable)' = CALCULATE(SUM('business vw_abhi_vs_market'[is_cheapest]), 'business vw_abhi_vs_market'[competitor_count] >= 4)
 		formatString: 0
 		lineageTag: 85a6c286-a6aa-4fda-85de-a7ae1898dfce
 
@@ -159,16 +170,16 @@ table 'business vw_abhi_vs_market'
 	measure 'Gap Direction' = IF([Avg Premium Gap] < 0, "ABHI cheaper", "ABHI dearer")
 		lineageTag: 9b6bddef-b742-498d-9c05-7a683c6b33df
 
-	measure 'Price Index Label' = VAR v = AVERAGE('business vw_abhi_vs_market'[price_index]) VAR n = AVERAGE('business vw_abhi_vs_market'[competitor_count]) RETURN IF(ISBLANK(v), BLANK(), FORMAT(v, "0") & IF(n < 5, " (n=" & FORMAT(n, "0") & ")", ""))
+	measure 'Price Index Label' = VAR v = AVERAGE('business vw_abhi_vs_market'[price_index]) VAR n = AVERAGE('business vw_abhi_vs_market'[competitor_count]) RETURN IF(ISBLANK(v), BLANK(), FORMAT(v, "0") & IF(n < 4, " (n=" & FORMAT(n, "0") & ")", ""))
 		lineageTag: face35a6-59b8-4b9b-8108-e18e12482a89
 
-	measure 'Price Index Cell Color' = VAR v = AVERAGE('business vw_abhi_vs_market'[price_index]) VAR n = AVERAGE('business vw_abhi_vs_market'[competitor_count]) RETURN SWITCH(TRUE(), ISBLANK(v), "#2c2c2a", n < 5, "#3a3a38", v < 90, "#0ca30c", v <= 105, "#8a8a8a", "#d03b3b")
+	measure 'Price Index Cell Color' = VAR v = AVERAGE('business vw_abhi_vs_market'[price_index]) VAR n = AVERAGE('business vw_abhi_vs_market'[competitor_count]) RETURN SWITCH(TRUE(), ISBLANK(v), "#f2f2f2", n < 4, "#8a8a8a", v < 90, "#0ca30c", v <= 105, "#8a8a8a", "#d03b3b")
 		lineageTag: b587dbf3-b2fb-4d79-a2dc-5ffa00c109b7
 
-	measure 'Modal Position (Reliable)' = VAR PositionCounts = ADDCOLUMNS(VALUES('business vw_abhi_vs_market'[position]), "Cnt", CALCULATE(COUNTROWS('business vw_abhi_vs_market'), 'business vw_abhi_vs_market'[competitor_count] >= 5)) VAR TopRow = TOPN(1, PositionCounts, [Cnt], DESC) RETURN MAXX(TopRow, 'business vw_abhi_vs_market'[position])
+	measure 'Modal Position (Reliable)' = VAR PositionCounts = ADDCOLUMNS(VALUES('business vw_abhi_vs_market'[position]), "Cnt", CALCULATE(COUNTROWS('business vw_abhi_vs_market'), 'business vw_abhi_vs_market'[competitor_count] >= 4)) VAR TopRow = TOPN(1, PositionCounts, [Cnt], DESC) RETURN MAXX(TopRow, 'business vw_abhi_vs_market'[position])
 		lineageTag: c6ddcad2-a39e-4915-91f8-aca595a8f676
 
-	measure 'Modal Position Count (Reliable)' = VAR ModalPos = [Modal Position (Reliable)] RETURN CALCULATE(COUNTROWS('business vw_abhi_vs_market'), 'business vw_abhi_vs_market'[position] = ModalPos, 'business vw_abhi_vs_market'[competitor_count] >= 5)
+	measure 'Modal Position Count (Reliable)' = VAR ModalPos = [Modal Position (Reliable)] RETURN CALCULATE(COUNTROWS('business vw_abhi_vs_market'), 'business vw_abhi_vs_market'[position] = ModalPos, 'business vw_abhi_vs_market'[competitor_count] >= 4)
 		formatString: 0
 		lineageTag: e04c9860-a3fa-44eb-8f2c-32c357cf77c0
 

@@ -22,6 +22,17 @@ table 'business vw_head_to_head'
 		lineageTag: 46cc22db-481c-47c4-b97c-b99f49972626
 		summarizeBy: none
 		sourceColumn: age_band
+		sortByColumn: 'Age Band Sort'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Age Band Sort' = SWITCH('business vw_head_to_head'[age_band], "18-25", 1, "26-35", 2, "36-45", 3, "46-55", 4, "56-65", 5, "66+", 6, 99)
+		dataType: int64
+		formatString: 0
+		lineageTag: 3d5f7a9c-2e4b-4d8a-a3f6-7b9c1e5a3d7c
+		summarizeBy: none
 
 		annotation SummarizationSetBy = Automatic
 

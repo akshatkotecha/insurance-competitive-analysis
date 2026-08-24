@@ -67,6 +67,10 @@ table 'business vw_feature_matrix'
 
 		annotation SummarizationSetBy = Automatic
 
+	measure 'Has Feature' = SUM('business vw_feature_matrix'[has_feature])
+		formatString: 0
+		lineageTag: 2e4c6a8d-1f3b-4c5a-9e7d-4f6b8a2c5e9d
+
 	partition 'business vw_feature_matrix' = m
 		mode: import
 		source =

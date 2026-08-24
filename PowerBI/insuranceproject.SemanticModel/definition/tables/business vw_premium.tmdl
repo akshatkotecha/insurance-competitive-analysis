@@ -74,6 +74,17 @@ table 'business vw_premium'
 		lineageTag: 22169016-d4d6-485a-a09d-a7813501dcd3
 		summarizeBy: none
 		sourceColumn: age_band
+		sortByColumn: 'Age Band Sort'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Age Band Sort' = SWITCH('business vw_premium'[age_band], "00-17", 0, "18-25", 1, "26-35", 2, "36-45", 3, "46-55", 4, "56-65", 5, "66+", 6, 99)
+		dataType: int64
+		formatString: 0
+		lineageTag: 2c4e6a8b-1d3f-4a7c-9e5b-6f8a2c4d6e1b
+		summarizeBy: none
 
 		annotation SummarizationSetBy = Automatic
 
@@ -186,6 +197,9 @@ table 'business vw_premium'
 	measure 'Median Premium Per Lakh' = MEDIAN('business vw_premium'[premium_per_lakh])
 		formatString: #,##0
 		lineageTag: aa3dedbe-632a-4ca5-b099-113ea80b5d5a
+
+	measure 'ABHI Min Cover Slab' = VAR MinSI = CALCULATE(MIN('business vw_premium'[sum_insured]), 'business vw_premium'[company_name] = "ABHI") RETURN IF(ISBLANK(MinSI), BLANK(), IF(MinSI >= 10000000, FORMAT(MinSI / 10000000, "0.##") & " Cr", FORMAT(MinSI / 100000, "0.##") & " L"))
+		lineageTag: 9e1c3a5d-6f8b-4c2e-a4d6-1b8f3e5c7a9d
 
 	measure 'Sum Insured (Scatter)' = AVERAGE('business vw_premium'[sum_insured])
 		formatString: #,##0
