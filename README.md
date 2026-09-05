@@ -2,8 +2,7 @@
 
 Competitive analysis of eight Indian health insurers, built end to end: the
 source PDFs are scraped and parsed into SQL Server, the analysis lives in a
-view layer, and the findings surface through a BI dashboard, two chatbots and
-a Power BI report.
+view layer, and the findings surface through a BI dashboard and two chatbots.
 
 The focal company is **ABHI** (Aditya Birla Health Insurance), compared against
 Bajaj Allianz, Care Health, HDFC ERGO, ICICI Lombard, Niva Bupa, Star Health
@@ -52,7 +51,6 @@ flowchart TD
 
     V --> W["BI dashboard<br/>Dash + Plotly"]
     V --> X["SQL chatbot<br/>Streamlit"]
-    V --> Y["Power BI report<br/>6 pages, DAX"]
     F --> Z["RAG chatbot<br/>Streamlit + Ollama"]
     D --> Z
 ```
@@ -228,7 +226,6 @@ Python/
   extractmetrics.ipynb     annual reports → COMPANY_METRICS
 
 SQL/                       schemas, tables, 18 views, seed data — see SQL/README.md
-PowerBI/                   6-page .pbip report (PBIR + TMDL, DAX measures)
 Companies/                 pdf_links.json per insurer — the source URLs
 docs/                      screenshots
 ```

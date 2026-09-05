@@ -1,8 +1,0 @@
-{
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
-  "name": "f7d42da07c9d8f42",
-  "displayName": "Trends",
-  "width": 1280,
-  "height": 720,
-  "displayOption": "FitToPage"
-}

@@ -15,6 +15,11 @@ Companies/*/*.txt
 # Generated FAISS index — regenerate with: python Python/build_index.py
 vectorstore/
 
+# Power BI report — still in progress, so it is kept locally rather than
+# published. Delete this line to publish it once it is finished; the history
+# up to commit a91cf03 still has every earlier version of it.
+PowerBI/
+
 # Runtime chatbot query log
 chatbot_log.csv
 
