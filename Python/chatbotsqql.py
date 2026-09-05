@@ -4,8 +4,9 @@ Insurance chatbot — SQL only, Streamlit front end.
     streamlit run chatbotsqql.py
 
 Every answer is a database lookup. Nothing is generated. All connection,
-routing and query logic lives in chatbot_core.py (shared with dash_app.py);
-this file only renders chatbot_core.answer_question() as a chat widget.
+routing and query logic lives in chatbot_core.py (shared with the BI
+dashboard's "Ask the data" page); this file only renders
+chatbot_core.answer_question() as a chat widget.
 """
 
 import streamlit as st

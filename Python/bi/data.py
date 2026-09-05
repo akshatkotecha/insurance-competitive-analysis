@@ -21,9 +21,9 @@ from decimal import Decimal
 import pandas as pd
 import pyodbc
 
-# Same connection string the chatbot uses (Python/chatbot_core.py, shared by
-# chatbotsqql.py and dash_app.py). Imported so there is one definition of the
-# server to change; the literal below is the fallback if that module moves.
+# Same connection string the chatbot uses (Python/chatbot_core.py, shared with
+# chatbotsqql.py). Imported so there is one definition of the server to change;
+# the literal below is the fallback if that module ever moves.
 try:
     from chatbot_core import CONN_STR
 except Exception:  # pragma: no cover - only hit if chatbot_core is unavailable

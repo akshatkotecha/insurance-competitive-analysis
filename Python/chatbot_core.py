@@ -1,8 +1,9 @@
 """
 Insurance database core — connection, deterministic routing, SQL queries and
 the glossary. No UI dependency: this module is shared by chatbotsqql.py
-(Streamlit chat) and dash_app.py (Dash dashboard), so a question is answered
-identically no matter which front end asks it.
+(Streamlit chat) and bi/pages/assistant.py (the "Ask the data" page of the BI
+dashboard), so a question is answered identically no matter which front end
+asks it.
 
 Routing order
 -------------
