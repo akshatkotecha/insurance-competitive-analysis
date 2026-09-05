@@ -62,12 +62,7 @@ RETRIEVE_K = 8
 FETCH_K = 24            # candidates considered before MMR picks K
 MMR_LAMBDA = 0.6        # 1.0 = pure relevance, 0 = pure diversity
 
-CONN_STR = (
-    "DRIVER={ODBC Driver 17 for SQL Server};"
-    "SERVER=AKSHAT\\SQLEXPRESS;"
-    "DATABASE=INSURANCEDB;"
-    "Trusted_Connection=yes;"
-)
+from db import CONN_STR  # noqa: E402  server/database come from the environment
 
 SLAB_TEXT = "5L, 7.5L, 10L, 15L, 20L, 25L, 50L, 75L, 1Cr"
 

@@ -29,6 +29,8 @@ import re
 import pdfplumber
 import pyodbc
 
+import db
+
 try:
     import pymupdf as fitz
     import pytesseract
@@ -88,12 +90,7 @@ VARIANT_WORDS = ["titanium", "platinum", "diamond", "gold", "silver", "bronze"]
 if OCR_AVAILABLE:
     pytesseract.pytesseract.tesseract_cmd = TESSERACT_PATH
 
-conn = pyodbc.connect(
-    "DRIVER={ODBC Driver 17 for SQL Server};"
-    "SERVER=AKSHAT\\SQLEXPRESS;"
-    "DATABASE=INSURANCEDB;"
-    "Trusted_Connection=yes;"
-)
+conn = db.connect()
 cursor = conn.cursor()
 cursor.fast_executemany = True
 print("Connected Successfully")

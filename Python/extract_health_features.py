@@ -15,6 +15,8 @@ import re
 
 import pyodbc
 
+import db
+
 DRY_RUN = False
 CLEAR_EXISTING = True
 
@@ -29,12 +31,7 @@ NEGATION = [
 # phrases that mark a glossary entry rather than a benefit value
 DEFINITION_MARKERS = r"means|shall mean|is defined as|refers to|definition"
 
-conn = pyodbc.connect(
-    "DRIVER={ODBC Driver 17 for SQL Server};"
-    "SERVER=AKSHAT\\SQLEXPRESS;"
-    "DATABASE=INSURANCEDB;"
-    "Trusted_Connection=yes;"
-)
+conn = db.connect()
 cursor = conn.cursor()
 print("Connected Successfully")
 

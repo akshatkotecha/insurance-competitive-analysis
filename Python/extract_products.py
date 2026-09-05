@@ -14,16 +14,13 @@ new rows.
 
 import pyodbc
 
+import db
+
 # =====================================
 # CONNECT
 # =====================================
 
-conn = pyodbc.connect(
-    "DRIVER={ODBC Driver 17 for SQL Server};"
-    "SERVER=AKSHAT\\SQLEXPRESS;"
-    "DATABASE=INSURANCEDB;"
-    "Trusted_Connection=yes;"
-)
+conn = db.connect()
 cursor = conn.cursor()
 print("Connected Successfully")
 

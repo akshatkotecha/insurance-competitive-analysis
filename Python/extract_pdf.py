@@ -33,6 +33,8 @@ from pathlib import Path
 
 import pdfplumber
 import pyodbc
+
+import db
 import requests
 from selenium import webdriver
 from selenium.common.exceptions import WebDriverException
@@ -102,12 +104,7 @@ if abhi_links_file.exists():
 # SQL CONNECTION + HELPERS
 # =====================================
 
-conn = pyodbc.connect(
-    "DRIVER={ODBC Driver 17 for SQL Server};"
-    "SERVER=AKSHAT\\SQLEXPRESS;"
-    "DATABASE=INSURANCEDB;"
-    "Trusted_Connection=yes;"
-)
+conn = db.connect()
 cursor = conn.cursor()
 
 

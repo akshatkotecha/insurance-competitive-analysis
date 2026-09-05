@@ -22,18 +22,15 @@ import re
 
 import pyodbc
 
+import db
+
 # =====================================
 # CONNECT
 # =====================================
 
 print("Script started")
 
-conn = pyodbc.connect(
-    "DRIVER={ODBC Driver 17 for SQL Server};"
-    "SERVER=AKSHAT\\SQLEXPRESS;"
-    "DATABASE=INSURANCEDB;"
-    "Trusted_Connection=yes;"
-)
+conn = db.connect()
 cursor = conn.cursor()
 
 # =====================================

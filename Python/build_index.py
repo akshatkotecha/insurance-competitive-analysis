@@ -15,6 +15,8 @@ import os
 import pickle
 
 import pyodbc
+
+import db
 from langchain_community.vectorstores import FAISS
 from langchain_core.documents import Document
 from langchain_huggingface import HuggingFaceEmbeddings
@@ -35,12 +37,7 @@ EMBED_MODEL = "BAAI/bge-base-en-v1.5"      # 768-dim, ~440 MB
 CHUNK_SIZE = 1200
 CHUNK_OVERLAP = 200
 
-conn = pyodbc.connect(
-    "DRIVER={ODBC Driver 17 for SQL Server};"
-    "SERVER=AKSHAT\\SQLEXPRESS;"
-    "DATABASE=INSURANCEDB;"
-    "Trusted_Connection=yes;"
-)
+conn = db.connect()
 cursor = conn.cursor()
 
 print("Loading cleaned pages...")

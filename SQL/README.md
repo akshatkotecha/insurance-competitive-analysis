@@ -59,7 +59,15 @@ sits on top of `vw_metric_rank`, `vw_metrics_cagr`, `vw_metrics_growth` and
 
 ## Connection
 
-Every script and the dashboard connect with Windows authentication to a local
-SQL Server Express instance. The server name is currently hardcoded as
-`AKSHAT\SQLEXPRESS`; change it in `Python/chatbot_core.py` (`CONN_STR`) and in
-the pipeline scripts, or set it from an environment variable.
+Every script, both chatbots and the dashboard build their connection from
+`Python/db.py`, which reads the server, database, driver and optional SQL login
+from environment variables and falls back to a local SQL Server Express
+instance with Windows authentication:
+
+```bash
+set INSURANCE_DB_SERVER=YOURHOST\SQLEXPRESS
+set INSURANCE_DB_NAME=INSURANCEDB
+```
+
+The `sql` files themselves are connection-agnostic — run them against whichever
+database your client is pointed at.

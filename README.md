@@ -268,12 +268,28 @@ Selenium download tiers), **Tesseract OCR** at
 `C:\Program Files\Tesseract-OCR\tesseract.exe` (only for ICICI Lombard's
 image-only rate chart), and **Ollama** with `qwen2.5:3b` for the RAG bot.
 
-The SQL Server instance name is currently hardcoded as `AKSHAT\SQLEXPRESS` —
-change `CONN_STR` in [`Python/chatbot_core.py`](Python/chatbot_core.py) and the
-pipeline scripts, or lift it into an environment variable.
+### Configuration
 
-An optional `GROQ_API_KEY` enables the chatbot's tier-3 routing. Without it,
-routing simply stops after tier 2 and says so — nothing breaks.
+Connection settings live in one place — [`Python/db.py`](Python/db.py) — and are
+read from the environment, so pointing the project at another machine means
+setting variables rather than editing files. Every default reproduces the
+original development box, so it runs with nothing set.
+
+| Variable | Default | |
+|---|---|---|
+| `INSURANCE_DB_SERVER` | `AKSHAT\SQLEXPRESS` | SQL Server instance |
+| `INSURANCE_DB_NAME` | `INSURANCEDB` | Database |
+| `INSURANCE_DB_DRIVER` | `ODBC Driver 17 for SQL Server` | ODBC driver |
+| `INSURANCE_DB_USER` / `INSURANCE_DB_PASSWORD` | *(unset)* | Set both to use a SQL login; otherwise Windows auth |
+| `GROQ_API_KEY` | *(unset)* | Optional — enables the chatbot's tier-3 routing. Without it routing stops after tier 2 and says so; nothing breaks |
+
+```bash
+set INSURANCE_DB_SERVER=YOURHOST\SQLEXPRESS
+python Python/bi_dashboard.py
+```
+
+Credentials are only ever read from the environment — nothing is written to
+disk, and `db.describe()` deliberately prints the target without the password.
 
 ---
 

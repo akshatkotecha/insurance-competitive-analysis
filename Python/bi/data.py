@@ -21,18 +21,10 @@ from decimal import Decimal
 import pandas as pd
 import pyodbc
 
-# Same connection string the chatbot uses (Python/chatbot_core.py, shared with
-# chatbotsqql.py). Imported so there is one definition of the server to change;
-# the literal below is the fallback if that module ever moves.
-try:
-    from chatbot_core import CONN_STR
-except Exception:  # pragma: no cover - only hit if chatbot_core is unavailable
-    CONN_STR = (
-        "DRIVER={ODBC Driver 17 for SQL Server};"
-        "SERVER=AKSHAT\\SQLEXPRESS;"
-        "DATABASE=INSURANCEDB;"
-        "Trusted_Connection=yes;"
-    )
+# Server, database and auth live in Python/db.py, which reads them from the
+# environment — one definition for the dashboard, both chatbots and every
+# pipeline stage.
+from db import CONN_STR, describe  # noqa: F401
 
 # ---------------------------------------------------------------------------
 # What we load. Views only — never the base tables.

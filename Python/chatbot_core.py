@@ -44,12 +44,10 @@ LLM_AVAILABLE = bool(GROQ_API_KEY)
 
 LOG_PATH = r"C:\Users\aksha\OneDrive\Desktop\insurance\chatbot_log.csv"
 
-CONN_STR = (
-    "DRIVER={ODBC Driver 17 for SQL Server};"
-    "SERVER=AKSHAT\\SQLEXPRESS;"
-    "DATABASE=INSURANCEDB;"
-    "Trusted_Connection=yes;"
-)
+# Server, database and auth come from db.py, which reads them from the
+# environment. Re-exported here because bi/data.py imports CONN_STR from this
+# module.
+from db import CONN_STR  # noqa: E402,F401
 
 NO_DATA = ("I'm sorry — I don't have that in my database. I can answer "
            "questions about premiums by age and cover, policy terms like "
